@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Atlanta Volunteer</title>
+{% endblock title %}
+
+{% block content %}
+<style media="screen">
+  .container {
+    max-width: 960px;
+  }
+  .site-header {
+    background-color:#343a40;
+  }
+  .site-header a {
+    color: #fff;
+    transition: ease-in-out color .15s;
+  }
+  .site-header a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+</style>
+
+<body>
+  <nav class="site-header sticky-top py-1">
+     <div class="container-fluid">
+       <a class="navbar-brand" href="/">Atlanta Volunteer</a>
+       {% if user.is_authenticated %}
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown01"
+        href="" style="float:right;" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">More</button>
+          <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" style="color:#000" href="/">Home</a>
+            <a class="dropdown-item" style="color:#000" href="/accounts/profile">Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" style="color:#000" href="/accounts/profile">
+            </a>
+            <a class="dropdown-item" style="color:#000" href="/accounts/logout">Logout</a>
+          </div>
+        {% else %}
+        <a class="btn btn-primary" style="float:right" href="/accounts/login">Login</a>
+        {% endif %}
+      </div>
+   </nav>
+
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="{% static 'js/bootstrap.bundle.min.js' %}" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+{% endblock content %}
