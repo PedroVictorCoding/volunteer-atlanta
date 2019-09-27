@@ -6,22 +6,6 @@
 {% endblock title %}
 
 {% block content %}
-<style media="screen">
-  .container {
-    max-width: 960px;
-  }
-  .site-header {
-    background-color:#343a40;
-  }
-  .site-header a {
-    color: #fff;
-    transition: ease-in-out color .15s;
-  }
-  .site-header a:hover {
-    color: #fff;
-    text-decoration: none;
-  }
-</style>
 
 <body>
   <nav class="site-header sticky-top py-1">
@@ -122,60 +106,75 @@
 <div class="container-fluid rounded border shadow">
 
 <form style="padding:10px" method="post">
-  {% csrf_token %}
   <h4>Publication</h4>
 <div class="form-group">
-  <label>Title</label>
-  <input type="title" class="form-control" placeholder="Enter title">
-  <small class="form-text text-muted">This field is required</small>
-</div>
-<div class="form-group">
-  <label>Description</label>
-  <textarea class="form-control" placeholder="Enter a Description + Requirements" rows="3"></textarea>
-</div>
-<div class="form-group">
-  <label>Website</label>
-  <input class="form-control" id="" placeholder="Enter Website (Recommend: Google Forms)">
-</div>
-
-<button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <small class="p-2 form-text text-muted">Title is required. Also make sure to keep messages clean.</small>
+  <button type="submit" id="submitting" data class="btn btn-primary btn-lg btn-block">Submit</button>
+  </div>
 </form>
 </div>
 <br>
 {% else %}
+  <div class="container-fluid rounded border">
+    <div class="p-4 row">
+      <div class="col">
+        <a class="btn btn-block btn-outline-primary" href="/accounts/signup">Sign-up</a>
+      </div>
+      <div class="col">
+        <a class="btn btn-block btn-primary" href="/accounts/login">Login</a>
+      </div>
+    </div>
+  </div>
 {% endif %}
 
-<form class="" method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
-</form>
+<div style="visibility:hidden" id="published-alert" class="alert alert-success" role="alert">
+  <b>Success!</b> You have published your volunteering activity
+</div>
+<script>
+  $(function(){
+    $("#submitting").on("click", function() {
+      alert = document.getElementById('published-alert');
+      alert.style.visibility = 'visible';
+      setTimeout (removealert, 2000);
+      function removealert(){
+        alert.style.visibility = 'hidden';
+      }
+
+
+    });
+  });
+</script>
 
 
 <div style="margin-top:10px">
   <h3 style="margin-bottom:15px">Recent Opportunities</h3>
+
+{% for post in posts %}
       <div class="no-gutters border rounded flex-md-row mb-4 shadow-sm">
         <div class="col p-4 d-flex flex-colunm positon-static">
           <div class="container">
             <div class="row">
               <div class="col">
-              <h4 class="p-1">Title here</h4>
-                </div>
+                <small class="form-text text-muted">{{ post.date }}</small>
+              </div>
               <div class="col">
-              <p class="p-1" style="text-align:right;float:right">User</p>
+                <p class="p-1" style="text-align:right;float:right">{{ post.user }}</p>
               </div>
             </div>
-            <h5 class="p-1">Description goes here</h5>
+            <div class="row">
+              <h4 class="p-1">{{ post.title }}</h4>
+            </div>
+            <h5 class="p-1">{{ post.description|linebreaks }}</h5>
+            <h5 class="p-1"><a href="{{ post.website }}"></a>{{ post.website }}</h5>
           </div>
         </div>
       </div>
-</div>
-
+{% endfor %}
 
 
 </div>
 
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="{% static 'js/bootstrap.bundle.min.js' %}" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
 {% endblock content %}

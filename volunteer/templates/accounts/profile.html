@@ -6,6 +6,30 @@
 {% endblock title %}
 
 {% block content %}
+
+<nav class="site-header sticky-top py-1">
+   <div class="container-fluid">
+     <a class="navbar-brand" href="/">Atlanta Volunteer</a>
+     {% if user.is_authenticated %}
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown01"
+      href="" style="float:right;" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false">More</button>
+        <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" style="color:#000" href="/">Home</a>
+            <a class="dropdown-item" style="color:#000" href="/">Messaging (Coming Soon)</a>
+          <a class="dropdown-item" style="color:#000" href="/accounts/profile">Profile - {{ user }}</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" style="color:#000" href="/about">About</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" style="color:#000" href="/accounts/logout">Logout</a>
+        </div>
+      {% else %}
+      <a class="btn btn-primary" style="float:right" href="/accounts/login">Login</a>
+      {% endif %}
+    </div>
+ </nav>
+
+
 <div class="jumbotron">
   <div class="container">
     <h3>Profile</h3>
@@ -14,9 +38,9 @@
     <h5>Last Name: {{ user.last_name }}</h5>
     <h5>Email: {{ user.email }}</h5>
     <br>
-    <a class="btn btn-primary" href="/accounts/profile/editprofile">Change your Profile</a>
-    <a class="btn btn-primary" href="/accounts/profile/editprofile">Change your Password</a>
-    <a class="btn btn-secondary" href="/accounts/logout">Logout</a>
+    <a style="margin-bottom:10px" class="btn btn-primary" href="/accounts/profile/editprofile">Change your Profile</a>
+    <a style="margin-bottom:10px" class="btn btn-primary" href="/accounts/profile/editprofile">Change your Password</a>
+    <a style="margin-bottom:10px" class="btn btn-secondary" href="/accounts/logout">Logout</a>
   </div>
 
 </div>
