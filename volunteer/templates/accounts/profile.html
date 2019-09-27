@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Profile</title>
+{% endblock title %}
+
+{% block content %}
+<div class="jumbotron">
+  <div class="container">
+    <h3>Profile</h3>
+    <h4>Username: {{ user }}</h4>
+    <h5>First Name: {{ user.first_name }}</h5>
+    <h5>Last Name: {{ user.last_name }}</h5>
+    <h5>Email: {{ user.email }}</h5>
+    <br>
+    <a class="btn btn-primary" href="/accounts/profile/editprofile">Change your Profile</a>
+    <a class="btn btn-primary" href="/accounts/profile/editprofile">Change your Password</a>
+    <a class="btn btn-secondary" href="/accounts/logout">Logout</a>
+  </div>
+
+</div>
+
+
+{% endblock content %}

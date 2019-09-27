@@ -19,12 +19,15 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, 
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from home.views import homepage
-from accounts.views import profile, login
+from home.views import homepage, HomeView
+from accounts.views import profile, signup
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', homepage),
-    path('accounts/login', LoginView.as_view(template_name='accounts/login.html')),
+    path('', HomeView.as_view()),
+    path('accounts/signup/', signup),
+    path('accounts/login/', LoginView.as_view(template_name='accounts/login.html')),
     path('accounts/logout/', LogoutView.as_view(template_name='accounts/logout.html')),
+    path('accounts/profile/', profile)
 ]

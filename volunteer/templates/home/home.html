@@ -33,10 +33,11 @@
         aria-expanded="false">More</button>
           <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" style="color:#000" href="/">Home</a>
-            <a class="dropdown-item" style="color:#000" href="/accounts/profile">Profile</a>
+              <a class="dropdown-item" style="color:#000" href="/">Messaging (Coming Soon)</a>
+            <a class="dropdown-item" style="color:#000" href="/accounts/profile">Profile - {{ user }}</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" style="color:#000" href="/accounts/profile">
-            </a>
+            <a class="dropdown-item" style="color:#000" href="/about">About</a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" style="color:#000" href="/accounts/logout">Logout</a>
           </div>
         {% else %}
@@ -45,7 +46,134 @@
       </div>
    </nav>
 
+<br>
 
+{% if user.is_authenticated %}
+<style>
+  span:before{
+    content: '';
+    animation: animate infinite 30s;
+  }
+  @keyframes animate{
+    0%{
+      content: 'Hello';
+
+    }
+    10%{
+      content: 'Salut';
+
+    }
+    20%{
+      content: 'Hallo';
+
+    }
+    30%{
+      content: 'Olá';
+
+    }
+    40%{
+      content: 'Привет';
+
+    }
+    50%{
+      content: 'Hola';
+
+    }
+    60%{
+      content: '你好';
+
+    }
+    70%{
+      content: 'হ্যালো';
+
+    }
+    80%{
+      content: 'こんにちは';
+
+    }
+    90%{
+      content: 'γεια σας';
+
+    }
+    100%{
+      content: 'नमस्ते';
+
+    }
+  }
+
+</style>
+
+<div class="container">
+<h1 style="text-align:center"><span></span> {{ user }}</h1>
+</div>
+
+<br>
+{% else %}
+{% endif %}
+<div class="container-fluid">
+<div class="jumbotron p-4 p-md-5 text-white rounded bg-dark shadow-lg">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 font-italic">Volunteering in Atlanta</h1>
+      <p class="lead my-3">Get involved and help the community, with thousands of opportunities</p>
+    </div>
+</div>
+
+{% if user.is_authenticated %}
+<div class="container-fluid rounded border shadow">
+
+<form style="padding:10px" method="post">
+  {% csrf_token %}
+  <h4>Publication</h4>
+<div class="form-group">
+  <label>Title</label>
+  <input type="title" class="form-control" placeholder="Enter title">
+  <small class="form-text text-muted">This field is required</small>
+</div>
+<div class="form-group">
+  <label>Description</label>
+  <textarea class="form-control" placeholder="Enter a Description + Requirements" rows="3"></textarea>
+</div>
+<div class="form-group">
+  <label>Website</label>
+  <input class="form-control" id="" placeholder="Enter Website (Recommend: Google Forms)">
+</div>
+
+<button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+</form>
+</div>
+<br>
+{% else %}
+{% endif %}
+
+<form class="" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+</form>
+
+
+<div style="margin-top:10px">
+  <h3 style="margin-bottom:15px">Recent Opportunities</h3>
+      <div class="no-gutters border rounded flex-md-row mb-4 shadow-sm">
+        <div class="col p-4 d-flex flex-colunm positon-static">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+              <h4 class="p-1">Title here</h4>
+                </div>
+              <div class="col">
+              <p class="p-1" style="text-align:right;float:right">User</p>
+              </div>
+            </div>
+            <h5 class="p-1">Description goes here</h5>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+
+</div>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
