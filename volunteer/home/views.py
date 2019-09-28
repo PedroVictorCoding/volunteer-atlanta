@@ -21,15 +21,12 @@ class HomeView(TemplateView):
             post.save()
             title = form.cleaned_data['title']
             description = form.cleaned_data['description']
+            address = form.cleaned_data['address']
             website = form.cleaned_data['website']
             form = HomeForm()
 
         args = {'form': form}
         return render(request, self.template_name, args)
-
-
-def homepage(request):
-    return render(request, 'home/home.html')
 
 
 def about(request):

@@ -6,4 +6,5 @@ class Post(models.Model):
     title = models.CharField(max_length=250)
     description = models.CharField(max_length=5000)
     website = models.URLField()
+    address = models.CharField(max_length=500)
     date = models.DateTimeField(auto_now_add=True)
