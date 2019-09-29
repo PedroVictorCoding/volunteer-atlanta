@@ -9,8 +9,9 @@ class HomeView(TemplateView):
     def get(self, request):
         form = HomeForm()
         posts = Post.objects.all().order_by('-date')
+        random_posts = Post.objects.order_by('?').first()
         print(posts)
-        args = {'form': form, 'posts': posts}
+        args = {'form': form, 'posts': posts, 'random_posts': random_posts}
         return render(request, self.template_name, args)
 
     def post(self, request):
