@@ -37,15 +37,44 @@
         {% endif %}
       </div>
    </nav>
-  <div class="container-fluid p-2">
+  <div class="container p-2">
    <div class="alert alert-success alert-dismissible fade show" role="alert">
-     <strong>NAHS Volunteering is here!</strong> We have recently launched. Make sure to participate in this fantastic community.
+     <strong>NAHS Volunteering is live!</strong> We have recently launched. Make sure to participate in this fantastic community.
      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
        <p aria-hidden="true">&times;</p>
      </button>
    </div>
   </div>
 <br>
+
+
+<style media="screen">
+  div.fixeds {
+  position: fixed;
+  float:right;
+  right:20px;
+  bottom: 10px;
+}
+</style>
+
+<div style="visibility:hidden" id="published-alert" class="alert alert-success fixeds" role="alert">
+  <strong>Success!</strong> You have published your volunteering activity!
+</div>
+<script>
+  $(function(){
+    $("#submitting").on("click", function() {
+      alert = document.getElementById('published-alert');
+      alert.style.visibility = 'visible';
+      setTimeout (removealert, 8000);
+      function removealert(){
+        alert.style.visibility = 'hidden';
+      }
+
+
+    });
+  });
+</script>
+
 
 {% if user.is_authenticated %}
 <style>
@@ -99,13 +128,12 @@
 
     }
   }
-
 </style>
 
 {% else %}
 {% endif %}
 <div class="container">
-<div style="margin-top:-20px" class="jumbotron p-4 p-md-5 text-white rounded bg-dark shadow-lg">
+<div style="margin-top:-20px" class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
   <div class="row">
     <div class="col px-0">
       <h1 class="display-4 font-italic">Volunteering NAHS</h1>
@@ -122,7 +150,7 @@
 </div>
 
 {% if user.is_authenticated %}
-<div class="container-fluid rounded border shadow">
+<div class="container-fluid p-3 rounded border shadow-lg">
 
 <form style="padding:10px" method="post">
   <h4>Publication</h4>
@@ -148,23 +176,6 @@
   </div>
 {% endif %}
 
-<div style="visibility:hidden" id="published-alert" class="alert alert-success" role="alert">
-  <b>Success!</b> You have published your volunteering activity
-</div>
-<script>
-  $(function(){
-    $("#submitting").on("click", function() {
-      alert = document.getElementById('published-alert');
-      alert.style.visibility = 'visible';
-      setTimeout (removealert, 2000);
-      function removealert(){
-        alert.style.visibility = 'hidden';
-      }
-
-
-    });
-  });
-</script>
 
 <div style="margin-top:10px">
   <h3 style="margin-bottom:15px">Recommended for you</h3>
@@ -176,20 +187,28 @@
                 <small class="form-text text-muted">{{ random_posts.date }}</small>
               </div>
               <div class="col">
-                <p class="p-1" style="text-align:right;float:right">{{ random_posts.user }}</p>
+                <p class="p-1 text-muted" style="text-align:right;float:right">by {{ random_posts.user }}</p>
               </div>
             </div>
             <div class="row">
-              <h4 class="p-1">{{ random_posts.title }}</h4>
+              <div class="col">
+                <h4 class="p-1">{{ random_posts.title }}</h4>
+              </div>
+              <div class="col">
+                <a class="btn btn-primary" style="float:right" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Expand for more info
+                </a>
+              </div>
             </div>
-            <h5 class="p-1">{{ random_posts.description|linebreaks }}</h5>
-            <h5 class="p-1"><a href="{{ post.website }}"></a>{{ random_posts.website }}</h5>
+            <div class="collapse" id="collapseExample">
+              <h5 class="p-1">{{ random_posts.description|linebreaks }}</h5>
+              <h5 class="p-1"><a href="{{ post.website }}"></a>{{ random_posts.website }}</h5>
+            </div>
+
           </div>
         </div>
       </div>
-
 </div>
-
 
 <div style="margin-top:10px">
   <h3 style="margin-bottom:15px">Recent Opportunities</h3>
@@ -203,7 +222,7 @@
                 <small class="form-text text-muted">{{ post.date }}</small>
               </div>
               <div class="col">
-                <p class="p-1" style="text-align:right;float:right">{{ post.user }}</p>
+                <p class="p-1 text-muted" style="text-align:right;float:right">by {{ post.user }}</p>
               </div>
             </div>
             <div class="row">
