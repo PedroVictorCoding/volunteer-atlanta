@@ -113,7 +113,10 @@
       <p>Non-profit website to find volunteering opportunities, more <a href="/about">here</a></p>
     </div>
     <div class="col">
+      {% if user.is_authenticated %}
       <h1 style="text-align:right"><span id="changinghello"></span> {{ user }}</h1>
+      {% else %}
+      {% endif %}
     </div>
       </div>
 </div>
