@@ -1,5 +1,6 @@
 from django.contrib import admin
 from accounts.models import UserProfile
+from home.models import Post
 
 class UserProfileAdmin(admin.ModelAdmin):
 
@@ -13,3 +14,4 @@ class UserProfileAdmin(admin.ModelAdmin):
         return queryset
 
 admin.site.register(UserProfile, UserProfileAdmin)
+admin.site.register(Post)

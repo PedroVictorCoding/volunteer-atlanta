@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-<title>NAHS Volunteer</title>
+<title>NAHS Volunteer Hub</title>
 {% endblock title %}
 
 {% block content %}
@@ -18,35 +18,34 @@
 <body>
   <nav class="site-header sticky-top py-1">
      <div class="container-fluid">
-       <a class="navbar-brand" href="/">NAHS Volunteer</a>
+       <a class="navbar-brand" href="{% url 'home' %}">NAHS Volunteer Hub</a>
        {% if user.is_authenticated %}
         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown01"
-        href="" style="float:right;" data-toggle="dropdown" aria-haspopup="true"
+        style="float:right;" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">More</button>
           <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" style="color:#000" href="/">Home</a>
+            <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Home</a>
               <a class="dropdown-item" style="color:#000" href="/">Messaging (Coming Soon)</a>
-            <a class="dropdown-item" style="color:#000" href="/accounts/profile">Profile - {{ user }}</a>
+            <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" style="color:#000" href="/about">About</a>
+            <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" style="color:#000" href="/accounts/logout">Logout</a>
+            <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
           </div>
         {% else %}
-        <a class="btn btn-primary" style="float:right" href="/accounts/login">Login</a>
+        <a class="btn btn-primary" style="float:right" href="{% url 'login' %}">Login</a>
         {% endif %}
       </div>
    </nav>
   <div class="container p-2">
    <div class="alert alert-success alert-dismissible fade show" role="alert">
-     <strong>NAHS Volunteering is live!</strong> We have recently launched. Make sure to participate in this fantastic community.
+     <strong>NAHS Volunteer Hub is live!</strong> We have recently launched. Make sure to participate in this fantastic community.
      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
        <p aria-hidden="true">&times;</p>
      </button>
    </div>
   </div>
 <br>
-
 
 <style media="screen">
   div.fixeds {
@@ -57,7 +56,7 @@
 }
 </style>
 
-<div style="visibility:hidden" id="published-alert" class="alert alert-success fixeds" role="alert">
+<div style="visibility:hidden" id="published-alert" class="alert alert-success fixeds shadow-lg" role="alert">
   <strong>Success!</strong> You have published your volunteering activity!
 </div>
 <script>
@@ -136,13 +135,13 @@
 <div style="margin-top:-20px" class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
   <div class="row">
     <div class="col px-0">
-      <h1 class="display-4 font-italic">Volunteering NAHS</h1>
+      <h1 class="display-4 font-italic">NAHS Volunteer Hub</h1>
       <p class="lead my-3">Get involved and help the community, with thousands of opportunities</p>
-      <p>Non-profit website to find volunteering opportunities, more <a href="/about">here</a></p>
+      <p>Non-profit website to find volunteering opportunities, more <a href="{% url 'about' %}">here</a></p>
     </div>
     <div class="col">
       {% if user.is_authenticated %}
-      <h1 style="text-align:right"><span id="changinghello"></span> {{ user }}</h1>
+      <h1 style="text-align:right"><span id="changinghello"></span> {{ request.user }}</h1>
       {% else %}
       {% endif %}
     </div>
@@ -167,17 +166,19 @@
   <div class="container-fluid rounded border">
     <div class="p-4 row">
       <div class="col">
-        <a class="btn btn-block btn-outline-primary" href="/accounts/signup">Sign-up</a>
+        <a class="btn btn-block btn-outline-primary" href="{% url 'signup' %}">Sign-up</a>
       </div>
       <div class="col">
-        <a class="btn btn-block btn-primary" href="/accounts/login">Login</a>
+        <a class="btn btn-block btn-primary" href="{% url 'login' %}">Login</a>
       </div>
     </div>
   </div>
 {% endif %}
 
 
-<div style="margin-top:10px">
+<div class="row">
+
+<div class="col" style="margin-top:10px">
   <h3 style="margin-bottom:15px">Recommended for you</h3>
       <div class="no-gutters border rounded flex-md-row mb-4 shadow-sm">
         <div class="col p-4 d-flex flex-colunm positon-static">
@@ -202,13 +203,29 @@
             </div>
             <div class="collapse" id="collapseExample">
               <h5 class="p-1">{{ random_posts.description|linebreaks }}</h5>
-              <h5 class="p-1"><a href="{{ post.website }}"></a>{{ random_posts.website }}</h5>
+              <h5 class="p-1">Address: {{ random_post.address }}</h5>
+              <h5 class="p-1"><a href="{{ random_post.website }}"></a>{{ random_posts.website }}</h5>
             </div>
 
           </div>
         </div>
       </div>
 </div>
+
+<div class="col" style="margin-top:10px">
+  <h3 style="margin-bottom:15px">Other Volunteers and Organizations</h3>
+  <div class="no-gutters border rounded flex-md-row mb-4 shadow-sm">
+    <div class="p-3">
+    {% for user in users %}
+      <h5><a href="{% url 'profile_pk' pk=user.pk %}">{{ user.username }}</a></h5>
+    {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+</div>
+
 
 <div style="margin-top:10px">
   <h3 style="margin-bottom:15px">Recent Opportunities</h3>
@@ -229,7 +246,8 @@
               <h4 class="p-1">{{ post.title }}</h4>
             </div>
             <h5 class="p-1">{{ post.description|linebreaks }}</h5>
-            <h5 class="p-1"><a href="{{ post.website }}"></a>{{ post.website }}</h5>
+            <h5 class="p-1">Address: {{ post.address }}</h5>
+            <h5 class="p-1"><a href="{{ post.website }}">{{ post.website }}</a></h5>
           </div>
         </div>
       </div>

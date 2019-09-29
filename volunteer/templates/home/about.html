@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-<title>About - NAHS Volunteer</title>
+<title>About - NAHS Volunteer Hub</title>
 {% endblock title %}
 
 {% block content %}
@@ -16,7 +16,7 @@
 
 <nav class="site-header sticky-top py-1">
    <div class="container-fluid">
-     <a class="navbar-brand" href="/">NAHS Volunteer</a>
+     <a class="navbar-brand" href="/">NAHS Volunteer Hub</a>
      {% if user.is_authenticated %}
       <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown01"
       href="" style="float:right;" data-toggle="dropdown" aria-haspopup="true"
@@ -24,7 +24,7 @@
         <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" style="color:#000" href="/">Home</a>
             <a class="dropdown-item" style="color:#000" href="/">Messaging (Coming Soon)</a>
-          <a class="dropdown-item" style="color:#000" href="/accounts/profile">Profile - {{ user }}</a>
+          <a class="dropdown-item" style="color:#000" href="/accounts/profile">Profile - {{ request.user }}</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" style="color:#000" href="/about">About</a>
           <div class="dropdown-divider"></div>
@@ -46,14 +46,43 @@
         </div>
       </div>
 
+      <div class="container" style="margin-top:20px">
+        <div class="p-5 rounded border shadow">
+          <h3>Terms and Privacy Policies</h3>
+          <h5>User's Responsability and Duty</h5>
+          <div class="container-fluid">
+              <ol>
+                <li>Users must be respectful and shouldn't write innapropriate messages. We (the software) are not responsible for actions taken by user</li>
+                <li>Users should share only true information and shouldn't mislead others. </li>
+              </ol>
+          </div>
+          <h5>Privacy</h5>
+          <div class="container-fluid">
+              <ol>
+                <li>We, as a Non-profit website, will do our best to keep your data safe and protect it</li>
+                <li>We are not responsible for any leak of information.</li>
+                <li>The data that is stored in our servers is, first and last name, username, email and the public posts</li>
+                <li>We are not required to change or edit any data.</li>
+              </ol>
+          </div>
+          <h5>Illegal access of data</h5>
+          <div class="container-fluid">
+              <ol>
+                <li>One should not access private data that is hosted in our servers without proper authorization</li>
+              </ol>
+          </div>
+          <h5>Our Terms and Privacy</h5>
+          <div class="container-fluid">
+              <ol>
+                <li>This website is not making any profit. This website represent a project and it is a proof of concept</li>
+                <li>Any regulamentation that is not followed by the user might originate in having their account close or a higher penalty</li>
+                <li>When the user creates an account, they are agreeing with our present terms and also to any changes that might occur to them.</li>
+              </ol>
+          </div>
 
 
-
-
-
-
-
-
+        </div>
+      </div>
 
 {% endblock content %}
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

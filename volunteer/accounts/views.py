@@ -5,13 +5,17 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from accounts.models import UserProfile
 from django.urls import reverse_lazy
 from accounts.form import SignupForm, EditProfileForm
+from django.contrib.auth.decorators import login_required
 
-def profile(request):
-    if request.user.is_authenticated:
-        args = {'user': request.user}
-        return render(request, 'accounts/profile.html', args)
+@login_required
+def profile(request,pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
     else:
-        return HttpResponseRedirect('/accounts/login')
+        user = request.user
+    args = {'user': user}
+    return render(request, 'accounts/profile.html', args)
+
 
 def signup(request):
     if request.method == 'POST':
