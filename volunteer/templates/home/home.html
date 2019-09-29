@@ -37,12 +37,19 @@
         {% endif %}
       </div>
    </nav>
-
+  <div class="container-fluid p-2">
+   <div class="alert alert-success alert-dismissible fade show" role="alert">
+     <strong>NAHS Volunteering is here!</strong> We have recently launched. Make sure to participate in this fantastic community.
+     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <p aria-hidden="true">&times;</p>
+     </button>
+   </div>
+  </div>
 <br>
 
 {% if user.is_authenticated %}
 <style>
-  span:before{
+  #changinghello:before{
     content: '';
     animation: animate infinite 30s;
   }
@@ -95,20 +102,20 @@
 
 </style>
 
-<div class="container">
-<h1 style="text-align:center"><span></span> {{ user }}</h1>
-</div>
-
-<br>
 {% else %}
 {% endif %}
-<div class="container-fluid">
-<div class="jumbotron p-4 p-md-5 text-white rounded bg-dark shadow-lg">
-    <div class="col-md-6 px-0">
+<div class="container">
+<div style="margin-top:-20px" class="jumbotron p-4 p-md-5 text-white rounded bg-dark shadow-lg">
+  <div class="row">
+    <div class="col px-0">
       <h1 class="display-4 font-italic">Volunteering NAHS</h1>
       <p class="lead my-3">Get involved and help the community, with thousands of opportunities</p>
       <p>Non-profit website to find volunteering opportunities, more <a href="/about">here</a></p>
     </div>
+    <div class="col">
+      <h1 style="text-align:right"><span id="changinghello"></span> {{ user }}</h1>
+    </div>
+      </div>
 </div>
 
 {% if user.is_authenticated %}
