@@ -6,15 +6,23 @@ from accounts.models import UserProfile
 from django.urls import reverse_lazy
 from accounts.form import SignupForm, EditProfileForm
 from django.contrib.auth.decorators import login_required
+from home.models import Post, Friend
 
 @login_required
 def profile(request,pk=None):
+    user = request.user
+    users = User.objects.exclude(id=request.user.id)
+    args = {'user': user, 'users': users}
+    return render(request, 'accounts/profile.html', args)
+
+
+def other_profile(request, pk=None):
     if pk:
         user = User.objects.get(pk=pk)
     else:
         user = request.user
     args = {'user': user}
-    return render(request, 'accounts/profile.html', args)
+    return render(request, 'accounts/other_profile.html', args)
 
 
 def signup(request):

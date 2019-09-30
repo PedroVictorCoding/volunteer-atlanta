@@ -19,8 +19,8 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, 
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from home.views import HomeView, about
-from accounts.views import profile, signup
+from home.views import HomeView, about, change_friend
+from accounts.views import profile, other_profile, signup
 from home.models import Post
 
 urlpatterns = [
@@ -31,5 +31,7 @@ urlpatterns = [
     path('accounts/login/', LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('accounts/logout/', LogoutView.as_view(template_name='accounts/logout.html'), name='logout'),
     path('accounts/profile/', profile, name='profile'),
-    path('accounts/profile/<str:pk>/', profile, name='profile_pk'),
+    path('accounts/profile/<str:pk>/', other_profile, name='profile_pk'),
+
+    path('connect/<operation>/<str:pk>/', change_friend, name='change_friend')
 ]

@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from home.forms import HomeForm
-from home.models import Post
+from home.models import Post, Friend
 
 class HomeView(TemplateView):
     template_name = 'home/home.html'
@@ -12,7 +12,7 @@ class HomeView(TemplateView):
         form = HomeForm()
         posts = Post.objects.all().order_by('-date')
         random_posts = Post.objects.order_by('?').first()
-        users = User.objects.all()
+        users = User.objects.exclude(id=request.user.id)
         args = {'form': form, 'posts': posts, 'random_posts': random_posts, 'users': users}
         return render(request, self.template_name, args)
 
@@ -27,6 +27,7 @@ class HomeView(TemplateView):
             address = form.cleaned_data['address']
             website = form.cleaned_data['website']
             form = HomeForm()
+            return HttpResponseRedirect('home:home')
 
         args = {'form': form}
         return render(request, self.template_name, args)
@@ -34,3 +35,11 @@ class HomeView(TemplateView):
 
 def about(request):
     return render(request, 'home/about.html')
+
+def change_friend(request, operation, pk):
+    new_friend = User.objects.get(pk=pk)
+    if operation == 'add':
+        Friend.make_friend(request.user, new_friend)
+    elif operation == 'remove':
+        Friend.remove_friend(request.user, new_friend)
+    return HttpResponseRedirect('/')

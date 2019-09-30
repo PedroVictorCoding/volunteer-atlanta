@@ -44,14 +44,7 @@
     <br>
     <h3>Profile:</h3>
     <h4>Username: {{ user }}</h4>
-    <h5>First Name: {{ user.first_name }}</h5>
-    <h5>Last Name: {{ user.last_name }}</h5>
-    <h5>Email: {{ user.email }}</h5>
-  </div>
-
-  <div class="container">
-    <h3>Your Connections</h3>
-
+    <h5>Full Name: {{ user.get_full_name }}</h5>
   </div>
 
 </div>
