@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'accounts',
+    'messaging',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -74,7 +76,20 @@ TEMPLATES = [
 ]
 
 
+
+ASGI_APPLICATION = 'volunteer.routing.application'
 WSGI_APPLICATION = 'volunteer.wsgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+
 
 
 # Database

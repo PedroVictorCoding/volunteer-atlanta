@@ -24,7 +24,7 @@
       aria-expanded="false">More</button>
         <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" style="color:#000" href="/">Home</a>
-            <a class="dropdown-item" style="color:#000" href="/">Messaging (Coming Soon)</a>
+            <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms (Coming Soon)</a>
           <a class="dropdown-item" style="color:#000" href="/accounts/profile">Profile - {{ request.user }}</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" style="color:#000" href="/about">About</a>
