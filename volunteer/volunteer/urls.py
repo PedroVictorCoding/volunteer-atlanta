@@ -22,16 +22,25 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from home.views import HomeView, about, change_friend
 from accounts.views import profile, other_profile, signup
 from home.models import Post
+from messaging.views import home, room
 
 urlpatterns = [
+    #Admin URLs
     path('admin/', admin.site.urls),
+
+    #Home URLs
     path('', HomeView.as_view(), name='home'),
     path('about/', about, name='about'),
+    path('connect/<operation>/<str:pk>/', change_friend, name='change_friend'),
+
+    #Accounts URLs
     path('accounts/signup/', signup, name='signup'),
     path('accounts/login/', LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('accounts/logout/', LogoutView.as_view(template_name='accounts/logout.html'), name='logout'),
     path('accounts/profile/', profile, name='profile'),
     path('accounts/profile/<str:pk>/', other_profile, name='profile_pk'),
 
-    path('connect/<operation>/<str:pk>/', change_friend, name='change_friend')
+    #Messaging URLs
+    path('room/', home, name='messaging_room'),
+    path('room/<str:room_name>/', room, name='room'),
 ]
