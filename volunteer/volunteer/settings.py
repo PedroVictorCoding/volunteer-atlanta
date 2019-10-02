@@ -25,7 +25,7 @@ SECRET_KEY = 'i2%mtpno@*wfqef)u1+-b^iyz4*dg*+x@ey44nqfa3d1j*g#n%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.atlantavolunteer.pythonanywhere.com', 'http://atlantavolunteer.pythonanywhere.com', 'atlantavolunteer.pythonanywhere.com']
 
 
 # Application definition
@@ -54,7 +54,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'volunteer.urls'
 
 
-TEMPLATE_PATH = '/home/pedro/Dev/volunteer-atlanta/volunteer/templates'
+TEMPLATE_PATH = '/home/atlantavolunteer/volunteer-atlanta/volunteer/templates'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -126,10 +126,10 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/pedro/Dev/notatish-web/src/'
+STATIC_ROOT = '/home/atlantavolunteer/volunteer-atlanta/volunteer/'
 
 STATICFILES_DIRS = (
-    '/home/pedro/Dev/notatish-web/src/static/',
+    '/home/atlantavolunteer/volunteer-atlanta/volunteer/static/',
 )
 
 DATE_INPUT_FORMATS = ('%Y%m%d')
