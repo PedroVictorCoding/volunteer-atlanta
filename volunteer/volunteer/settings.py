@@ -141,10 +141,17 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
 STATIC_ROOT = '/home/atlantavolunteer/volunteer-atlanta/volunteer/'
 
 STATICFILES_DIRS = (
     '/home/atlantavolunteer/volunteer-atlanta/volunteer/static/',
+=======
+STATIC_ROOT = os.path.join(BASE_DIR, '')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+>>>>>>> a1c903ee4f02377325df83906dad899e1dcb27f7
 )
 
 DATE_INPUT_FORMATS = ('%Y%m%d')
