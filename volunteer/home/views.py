@@ -26,6 +26,7 @@ class HomeView(TemplateView):
             description = form.cleaned_data['description']
             address = form.cleaned_data['address']
             website = form.cleaned_data['website']
+            category_tag = form.cleaned_data['category_tag']
             form = HomeForm()
             return HttpResponseRedirect('home:home')
 
