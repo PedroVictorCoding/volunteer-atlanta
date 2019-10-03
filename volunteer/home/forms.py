@@ -15,6 +15,8 @@ class HomeForm(forms.ModelForm):
     address = forms.CharField(required=False,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Address'}))
 
+    
+
     class Meta:
         model = Post
         fields = (

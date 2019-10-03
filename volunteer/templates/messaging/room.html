@@ -50,13 +50,20 @@
 
 <script src="{% static 'js/reconnecting-websocket.js' %}"></script>
 
+<style media="screen">
+  #sent{
+    text-decoration: bold
+  }
+</style>
+
+
 <script>
     var roomName = {{ room_name_json }};
     var username = {{ username }};
 
     var roomSocket = new ReconnectingWebSocket(
-        'wss://' + window.location.host +
-        '/wss/room/' + roomName + '/');
+        'ws://' + window.location.host +
+        '/ws/room/' + roomName + '/');
 
     roomSocket.onmessage = function(e) {
         var data = JSON.parse(e.data);
@@ -66,12 +73,11 @@
         var pTag = document.createElement('p');
         pTag.textContent = message.content;
         if (author === username){
-          msgListTag.className = 'sent';
+
         } else {
-          msgListTag.className = 'replies;'
         }
         msgListTag.appendChild(pTag);
-        document.querySelector('#room-log').value += (message + '\n');
+        document.querySelector('#room-log').value += (author + ": " + message.content + '\n');
     };
 
     roomSocket.onclose = function(e) {

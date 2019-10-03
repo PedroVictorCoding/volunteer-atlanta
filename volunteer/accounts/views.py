@@ -40,7 +40,6 @@ def signup(request):
 
 class ProfileUpdate(UpdateView):
     model = UserProfile
-    fields = ['image']
     template_name = 'accounts/editprofileform.html'
     success_url = reverse_lazy('profile')
 
