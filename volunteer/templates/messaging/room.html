@@ -55,8 +55,8 @@
     var username = {{ username }};
 
     var roomSocket = new ReconnectingWebSocket(
-        'ws://' + window.location.host +
-        '/ws/room/' + roomName + '/');
+        'wss://' + window.location.host +
+        '/wss/room/' + roomName + '/');
 
     roomSocket.onmessage = function(e) {
         var data = JSON.parse(e.data);
