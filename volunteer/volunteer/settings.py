@@ -141,10 +141,10 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/pedro/Dev/notatish-web/src/'
+STATIC_ROOT = os.path.join(BASE_DIR, '')
 
 STATICFILES_DIRS = (
-    '/home/pedro/Dev/notatish-web/src/static/',
+    os.path.join(BASE_DIR, 'static'),
 )
 
 DATE_INPUT_FORMATS = ('%Y%m%d')

@@ -10,5 +10,6 @@ def home(request):
 @login_required
 def room(request, room_name):
     return render(request, 'messaging/room.html', {
-        'room_name_json': mark_safe(json.dumps(room_name))
+        'room_name_json': mark_safe(json.dumps(room_name)),
+        'username': mark_safe(json.dumps(request.user.username)),
     })
