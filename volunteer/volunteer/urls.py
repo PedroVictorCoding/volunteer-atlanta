@@ -14,14 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetDoneView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from home.views import HomeView, about, change_friend
-from accounts.views import profile, other_profile, signup
-from home.models import Post
+
 from messaging.views import home, room
 
 urlpatterns = [
@@ -29,18 +27,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     #Home URLs
-    path('', HomeView.as_view(), name='home'),
-    path('about/', about, name='about'),
-    path('connect/<operation>/<str:pk>/', change_friend, name='change_friend'),
+    path('', include('home.urls')),
 
     #Accounts URLs
-    path('accounts/signup/', signup, name='signup'),
-    path('accounts/login/', LoginView.as_view(template_name='accounts/login.html'), name='login'),
-    path('accounts/logout/', LogoutView.as_view(template_name='accounts/logout.html'), name='logout'),
-    path('accounts/profile/', profile, name='profile'),
-    path('accounts/profile/<str:pk>/', other_profile, name='profile_pk'),
+    path('accounts/', include('accounts.urls')),
 
     #Messaging URLs
-    path('room/', home, name='messaging_room'),
-    path('room/<str:room_name>/', room, name='room'),
+    path('room/', include('messaging.urls')),
 ]

@@ -6,28 +6,28 @@ from home.forms import HomeForm
 from home.models import Post, Friend
 
 class HomeView(TemplateView):
-    template_name = 'home/home.html'
+    template_name = 'home/halloween-home.html'
 
     def get(self, request):
-        form = HomeForm()
-        posts = Post.objects.all().order_by('-date')
-        random_posts = Post.objects.order_by('?').first()
-        users = User.objects.exclude(id=request.user.id)
-        args = {'form': form, 'posts': posts, 'random_posts': random_posts, 'users': users}
+        form            = HomeForm()
+        posts           = Post.objects.all().order_by('-date')
+        random_posts    = Post.objects.order_by('?').first()
+        users           = User.objects.exclude(id=request.user.id)
+        args            = {'form': form, 'posts': posts, 'random_posts': random_posts, 'users': users}
         return render(request, self.template_name, args)
 
     def post(self, request):
         form = HomeForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
+            post            = form.save(commit=False)
+            post.user       = request.user
             post.save()
-            title = form.cleaned_data['title']
-            description = form.cleaned_data['description']
-            address = form.cleaned_data['address']
-            website = form.cleaned_data['website']
-            category_tag = form.cleaned_data['category_tag']
-            form = HomeForm()
+            title           = form.cleaned_data['title']
+            description     = form.cleaned_data['description']
+            address         = form.cleaned_data['address']
+            website         = form.cleaned_data['website']
+            category_tag    = form.cleaned_data['category_tag']
+            form            = HomeForm()
             return HttpResponseRedirect('home:home')
 
         args = {'form': form}

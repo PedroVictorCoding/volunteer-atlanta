@@ -8,19 +8,19 @@ from .models import Message
 class ChatConsumer(WebsocketConsumer):
 
     def fetch_messages(self, data):
-        messages = Messages.last_50_messages()
-        content = {
+        messages    = Messages.last_50_messages()
+        content     = {
             'messages': self.messages_to_json(messages)
         }
         self.send_message(content)
 
     def new_message(self, data):
-        author = data['from']
+        author      = data['from']
         author_user = User.objects.filter(username=author)[0]
-        message = Message.objects.create(
+        message     = Message.objects.create(
             author=author_user,
             content = data['message'])
-        content = {
+        content     = {
             'command': 'new_message',
             'message': self.message_to_json(message)
         }
@@ -45,8 +45,8 @@ class ChatConsumer(WebsocketConsumer):
     }
 
     def connect(self):
-        self.room_name = self.scope['url_route']['kwargs']['room_name']
-        self.room_group_name = 'room_%s' % self.room_name
+        self.room_name          = self.scope['url_route']['kwargs']['room_name']
+        self.room_group_name    = 'room_%s' % self.room_name
         async_to_sync(self.channel_layer.group_add)(
             self.room_group_name,
             self.channel_name

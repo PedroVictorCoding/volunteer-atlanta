@@ -10,9 +10,9 @@ from home.models import Post, Friend
 
 @login_required
 def profile(request,pk=None):
-    user = request.user
-    users = User.objects.exclude(id=request.user.id)
-    args = {'user': user, 'users': users}
+    user    = request.user
+    users   = User.objects.exclude(id=request.user.id)
+    args    = {'user': user, 'users': users}
     return render(request, 'accounts/profile.html', args)
 
 
@@ -21,7 +21,7 @@ def other_profile(request, pk=None):
         user = User.objects.get(pk=pk)
     else:
         user = request.user
-    args = {'user': user}
+    args     = {'user': user}
     return render(request, 'accounts/other_profile.html', args)
 
 
@@ -39,9 +39,9 @@ def signup(request):
 
 
 class ProfileUpdate(UpdateView):
-    model = UserProfile
-    template_name = 'accounts/editprofileform.html'
-    success_url = reverse_lazy('profile')
+    model           = UserProfile
+    template_name   = 'accounts/editprofileform.html'
+    success_url     = reverse_lazy('profile')
 
     def get_object(self):
         return self.request.user.profile
