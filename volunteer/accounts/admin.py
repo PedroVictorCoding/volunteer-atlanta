@@ -4,9 +4,6 @@ from home.models import Post
 
 class UserProfileAdmin(admin.ModelAdmin):
 
-    #def bio(self, obj):
-        #eturn obj.bio
-
     def get_queryset(self, request):
         queryset = super(UserProfileAdmin, self).get_queryset(request)
         # Organizes the database by newest to oldest user
