@@ -7,7 +7,6 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-        return self.user.category_tag
 
 def create_profile(sender, **kwargs):
     if kwargs['created']:
