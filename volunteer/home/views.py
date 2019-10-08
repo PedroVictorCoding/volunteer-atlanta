@@ -12,7 +12,8 @@ class HomeView(TemplateView):
         form            = HomeForm()
         posts           = Post.objects.all().order_by('-date')
         random_posts    = Post.objects.order_by('?').first()
-        users           = User.objects.exclude(id=request.user.id)
+        #users           = User.objects.exclude(id=request.user.id)
+        users           = User.objects.order_by('?').exclude(id=request.user.id)[:4]
         args            = {'form': form, 'posts': posts, 'random_posts': random_posts, 'users': users}
         return render(request, self.template_name, args)
 
