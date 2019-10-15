@@ -11,6 +11,8 @@ from home.models import Post, Friend
 from accounts.models import VolunteeringLog
 from accounts.form import LogForm
 from django.views.generic import TemplateView
+from django.contrib.admin.models import ADDITION, LogEntry
+from home.forms import HomeForm
 
 
 @method_decorator(login_required, name='get')
@@ -18,10 +20,12 @@ class LogView(TemplateView):
     template_name = 'accounts/profile.html'
 
     @method_decorator(login_required)
-    def get(self, request):
+    def get(self, request, pk=None):
         form            = LogForm()
         logs            = VolunteeringLog.objects.all().order_by('?')
-        args            = {'form': form, 'logs': logs}
+        user = User.objects.get(id=request.user.id)
+        token = user.pk
+        args            = {'form': form, 'logs': logs, 'token': token}
         return render(request, self.template_name, args)
 
     @method_decorator(login_required)
@@ -58,8 +62,9 @@ def other_profile(request, pk=None):
     else:
         user = request.user
     form            = LogForm()
+    token = user.pk
     logs            = VolunteeringLog.objects.filter(user=user)
-    args            = {'form': form, 'logs': logs, 'user': user}
+    args            = {'form': form, 'logs': logs, 'user': user, 'token': token}
     return render(request, 'accounts/other_profile.html', args)
 
 class Other_LogView(TemplateView):
