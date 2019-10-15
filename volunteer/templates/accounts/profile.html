@@ -49,10 +49,44 @@
     <h5>Email: {{ user.email }}</h5>
   </div>
 
-  <div class="container">
-    <!--<h3>Your Connections</h3>-->
+  <div class="container bg-white border rounded shadow-sm flex-md-row mb-4">
+    <form style="padding:10px" method="post">
+      <h4>Log Your Activities:</h4>
+    <div class="form-group">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <small>This action is not reversable</small>
+      <button type="submit" id="submitting" data class="btn btn-primary btn-lg btn-block">Submit</button>
+      </div>
+    </form>
 
   </div>
+
+
+<h3 class="container">Community Service Log:</h3>
+
+  {% for log in logs %}
+
+  <div class="container bg-white border rounded-lg shadow-sm flex-md-row mb-4">
+          <div class="col p-4 d-flex flex-colunm positon-static">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <small class="form-text text-muted">Date(s) of Activity: {{ log.date_activity }}</small>
+                </div>
+                <div class="col">
+                  <!--<p class="p-1 text-muted" style="text-align:right;float:right">by {{ log.user }}</p>-->
+                </div>
+              </div>
+              <h5 class="p-1">Agency Name: {{ log.agency_name }}</h5>
+              <h5 class="p-1">Activity: {{ log.activity|linebreaks }}</h5>
+              <h5 class="p-1">Hours: {{ log.hours }}</h5>
+              <h5 class="p-1">Supervisor: {{ log.supervisor_contact }}</h5>
+            </div>
+          </div>
+          </div>
+  {% endfor %}
+
 
 </div>
 

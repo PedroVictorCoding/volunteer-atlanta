@@ -7,22 +7,64 @@ from django.urls import reverse_lazy
 from accounts.form import SignupForm, EditProfileForm
 from django.contrib.auth.decorators import login_required
 from home.models import Post, Friend
+from accounts.models import VolunteeringLog
+from accounts.form import LogForm
+from django.views.generic import TemplateView
 
+
+class LogView(TemplateView):
+    template_name = 'accounts/profile.html'
+
+    def get(self, request):
+        form            = LogForm()
+        logs            = VolunteeringLog.objects.all().order_by('?')
+        args            = {'form': form, 'logs': logs}
+        return render(request, self.template_name, args)
+
+    def post(self, request):
+        form = LogForm(request.POST)
+        if form.is_valid():
+            log                 = form.save(commit=False)
+            log.user            = request.user
+            log.save()
+            agency_name         = form.cleaned_data['agency_name']
+            activity            = form.cleaned_data['activity']
+            hours               = form.cleaned_data['hours']
+            date_activity       = form.cleaned_data['date_activity']
+            supervisor_contact  = form.cleaned_data['supervisor_contact']
+            form                = LogForm()
+            return HttpResponseRedirect('/accounts/profile')
+
+        args = {'form': form}
+        return render(request, self.template_name, args)
+
+
+'''
 @login_required
 def profile(request,pk=None):
     user    = request.user
     users   = User.objects.exclude(id=request.user.id)
     args    = {'user': user, 'users': users}
     return render(request, 'accounts/profile.html', args)
-
+'''
 
 def other_profile(request, pk=None):
     if pk:
         user = User.objects.get(pk=pk)
     else:
         user = request.user
-    args     = {'user': user}
+    form            = LogForm()
+    logs            = VolunteeringLog.objects.filter(user=user)
+    args            = {'form': form, 'logs': logs, 'user': user}
     return render(request, 'accounts/other_profile.html', args)
+
+class Other_LogView(TemplateView):
+    template_name = 'accounts/other_profile.html'
+    def get(self, request):
+        form            = LogForm()
+        logs            = VolunteeringLog.objects.all().order_by('?')
+        args            = {'form': form, 'logs': logs}
+        return render(request, self.template_name, args)
 
 
 def signup(request):

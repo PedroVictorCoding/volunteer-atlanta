@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from accounts.models import VolunteeringLog
 
 class SignupForm(UserCreationForm):
     username    = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Username'}))
@@ -48,3 +49,27 @@ class EditProfileForm(UserChangeForm):
             'first_name',
             'last_name',
         )
+
+
+class LogForm(forms.ModelForm):
+
+    agency_name         = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Agency Name'}))
+
+    activity            = forms.CharField(required=True, widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3', 'placeholder': 'Enter Volunteering Activity'}), )
+
+    hours               = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Hours Earned'}))
+
+    date_activity       = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Date(s) of Activity'}))
+
+    supervisor_contact  = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Enter Supervisor's Name and Contact"}))
+
+
+    class Meta:
+        model   = VolunteeringLog
+        fields  = (
+            'agency_name',
+            'activity',
+            'hours',
+            'date_activity',
+            'supervisor_contact',
+            )
