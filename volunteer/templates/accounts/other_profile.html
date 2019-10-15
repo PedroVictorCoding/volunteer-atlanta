@@ -47,6 +47,33 @@
     <h5>Full Name: {{ user.get_full_name }}</h5>
   </div>
 
+<h3 class="container">Community Service Log:</h3>
+  {% for log in logs %}
+  <div class="container">
+
+        <div class="no-gutters border bg-white rounded flex-md-row mb-4 shadow-sm">
+          <div class="col p-4 d-flex flex-colunm positon-static">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <small class="form-text text-muted">Date(s) of Activity: {{ log.date_activity }}</small>
+                </div>
+                <div class="col">
+                  <!--<p class="p-1 text-muted" style="text-align:right;float:right">by {{ log.user }}</p>-->
+                </div>
+              </div>
+              <h5 class="p-1">Agency Name: {{ log.agency_name }}</h5>
+              <h5 class="p-1">Activity: {{ log.activity }}</h5>
+              <h5 class="p-1">Hours: {{ log.hours }}</h5>
+              <h5 class="p-1">Supervisor: {{ log.supervisor_contact }}</h5>
+            </div>
+          </div>
+        </div>
+          </div>
+  {% endfor %}
+
+
+
 </div>
 
 
