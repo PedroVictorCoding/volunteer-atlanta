@@ -47,6 +47,8 @@
   </div>
 <br>
 
+
+
 <style media="screen">
   div.fixeds {
   position: fixed;
@@ -148,8 +150,29 @@
       </div>
 </div>
 
+
+<div class="jumbotron p-md-3 shadow-sm border text-white rounded bg-white">
+  <input class="form-control" id="findtoken" placeholder="Find Users (Use Token)">
+  <button type="submit" onclick="find()" class="btn btn-primary btn-block mt-sm-2">Search</button>
+</div>
+
+<script>
+  enterKey = document.getElementById('findtoken')
+  enterKey.addEventListener("keydown", function (e) {
+    if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+        find();
+    }
+});
+
+  function find(){
+    givenToken = document.getElementById('findtoken').value
+    window.location = "/accounts/profile/" + givenToken;
+  }
+</script>
+<br>
+
 {% if user.is_authenticated %}
-<div class="container-fluid p-3 rounded border shadow-lg">
+<div style="margin-top:-20px" class="container-fluid rounded border shadow-lg">
 
 <form style="padding:10px" method="post">
   <h4>Publication</h4>
@@ -157,7 +180,7 @@
   {% csrf_token %}
   {{ form.as_p }}
   <small class="p-2 form-text text-muted">Title is required. Also make sure to keep messages clean.</small>
-  <button type="submit" id="submitting" data class="btn btn-primary btn-lg btn-block">Submit</button>
+  <button type="submit" id="submitting" class="btn btn-primary btn-lg btn-block">Submit</button>
   </div>
 </form>
 </div>
@@ -176,12 +199,9 @@
 {% endif %}
 
 
-<div class="row">
-
-<div class="col" style="margin-top:10px">
   <h3 style="margin-bottom:15px">Recommended for you</h3>
-      <div class="no-gutters border rounded flex-md-row mb-4 shadow-sm">
-        <div class="col p-4 d-flex flex-colunm positon-static">
+      <div class="container-fluid p-3 rounded border shadow-lg">
+        <div class="col p-4 d-flex flex-colunm positon-static" style="margin-bottom:10px">
           <div class="container">
             <div class="row">
               <div class="col">
@@ -210,13 +230,9 @@
           </div>
         </div>
       </div>
-</div>
-</div>
 
-
-<div class="col" style="margin-top:10px">
   <h3 style="margin-bottom:15px">Follow other users</h3>
-  <div class="no-gutters border rounded flex-md-row mb-4 shadow-sm">
+  <div class="container-fluid p-3 rounded border shadow-lg">
     <div class="p-3">
     {% for user in users %}
       <h5><a href="{% url 'profile_pk' pk=user.pk %}">{{ user.username }}</a></h5>
@@ -224,7 +240,7 @@
     </div>
   </div>
 
-</div>
+
 
 
 
@@ -232,7 +248,7 @@
   <h3 style="margin-bottom:15px">Recent Opportunities</h3>
 
 {% for post in posts %}
-      <div class="no-gutters border rounded flex-md-row mb-4 shadow-sm">
+      <div class="container-fluid p-3 rounded border shadow-lg">
         <div class="col p-4 d-flex flex-colunm positon-static">
           <div class="container">
             <div class="row">
@@ -253,6 +269,7 @@
           </div>
         </div>
       </div>
+      <br>
 {% endfor %}
 
 </div>
