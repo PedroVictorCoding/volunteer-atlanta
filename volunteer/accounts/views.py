@@ -6,21 +6,25 @@ from accounts.models import UserProfile
 from django.urls import reverse_lazy
 from accounts.form import SignupForm, EditProfileForm
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from home.models import Post, Friend
 from accounts.models import VolunteeringLog
 from accounts.form import LogForm
 from django.views.generic import TemplateView
 
 
+@method_decorator(login_required, name='get')
 class LogView(TemplateView):
     template_name = 'accounts/profile.html'
 
+    @method_decorator(login_required)
     def get(self, request):
         form            = LogForm()
         logs            = VolunteeringLog.objects.all().order_by('?')
         args            = {'form': form, 'logs': logs}
         return render(request, self.template_name, args)
 
+    @method_decorator(login_required)
     def post(self, request):
         form = LogForm(request.POST)
         if form.is_valid():
@@ -34,7 +38,6 @@ class LogView(TemplateView):
             supervisor_contact  = form.cleaned_data['supervisor_contact']
             form                = LogForm()
             return HttpResponseRedirect('/accounts/profile')
-
         args = {'form': form}
         return render(request, self.template_name, args)
 
@@ -48,6 +51,7 @@ def profile(request,pk=None):
     return render(request, 'accounts/profile.html', args)
 '''
 
+@login_required
 def other_profile(request, pk=None):
     if pk:
         user = User.objects.get(pk=pk)

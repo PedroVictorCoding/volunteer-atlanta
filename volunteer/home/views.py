@@ -6,7 +6,7 @@ from home.forms import HomeForm
 from home.models import Post, Friend
 
 class HomeView(TemplateView):
-    template_name = 'home/halloween-home.html'
+    template_name = 'home/home.html'
 
     def get(self, request):
         form            = HomeForm()
