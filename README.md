@@ -3,7 +3,7 @@
 ### Website: [NAHS Volunteer Hub](https://atlantavolunteer.pythonanywhere.com/)
 
 #### TODO:
-  -[][](Add "I want to participate button", this button will add name to a list)
+  -[](Add "I want to participate button", this button will add name to a list)
   -[][](Add Grade Form slot)
   -[][](Add Particles to website)
   -[][](Add Weather Feature for the volunteering activity)
