@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'home',
     'accounts',
     'messaging',
+    'clubs',
+
+    
     'channels',
 ]
 

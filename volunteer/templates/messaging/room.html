@@ -38,71 +38,17 @@
       </div>
    </nav>
 
-<div class="container">
-    <div class="no-gutters border rounded flex-md-row p-3 mb-4 shadow-sm">
-      <textarea readonly id="room-log" style="width:100%; height:80vh; resize:none"></textarea><br/>
-      <input id="room-message-input" class="p-2 mt-2" type="text" placeholder="Enter Message" style="width:100%"/><br/>
-      <button class="btn btn-primary btn-block mt-2" id="room-message-submit" type="button">Send</button>
-    </div>
-</div>
+   <form style="padding:10px" method="post">
+
+   <div class="form-group">
+     {% csrf_token %}
+     {{ form.as_p }}
+  <button type="submit" id="submitting" class="btn btn-primary btn-lg btn-block">Send</button>
+     </div>
 
 </body>
 
-<script src="{% static 'js/reconnecting-websocket.js' %}"></script>
 
-<style media="screen">
-  #sent{
-    text-decoration: bold
-  }
-</style>
-
-
-<script>
-    var roomName = {{ room_name_json }};
-    var username = {{ username }};
-
-    var roomSocket = new ReconnectingWebSocket(
-        'ws://' + window.location.host +
-        '/ws/room/' + roomName + '/');
-
-    roomSocket.onmessage = function(e) {
-        var data = JSON.parse(e.data);
-        var message = data['message'];
-        var author = message['author'];
-        var msgListTag = document.createElement('li');
-        var pTag = document.createElement('p');
-        pTag.textContent = message.content;
-        if (author === username){
-
-        } else {
-        }
-        msgListTag.appendChild(pTag);
-        document.querySelector('#room-log').value += (author + ": " + message.content + '\n');
-    };
-
-    roomSocket.onclose = function(e) {
-        console.error('Room socket closed unexpectedly');
-    };
-
-    document.querySelector('#room-message-input').focus();
-    document.querySelector('#room-message-input').onkeyup = function(e) {
-        if (e.keyCode === 13) {  // enter, return
-            document.querySelector('#room-message-submit').click();
-        }
-    };
-
-    document.querySelector('#room-message-submit').onclick = function(e) {
-        var messageInputDom = document.getElementById('room-message-input');
-        var message = messageInputDom.value;
-        roomSocket.send(JSON.stringify({
-            'command': 'new_message',
-            'message': message,
-            'from': username,
-          }));
-
-        messageInputDom.value = '';
-    };
-</script>
 
 {% endblock content %}
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

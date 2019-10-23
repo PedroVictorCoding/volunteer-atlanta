@@ -3,11 +3,9 @@ from django.contrib.auth.models import User
 
 class Message(models.Model):
     author      = models.ForeignKey(User, on_delete='')
-    content     = models.TextField()
+    message     = models.TextField()
     timestamp   = models.DateTimeField(auto_now_add=True)
+    room        = models.TextField()
 
     def __str__(self):
         return self.author.username
-
-    def last_50_messages(self):
-        return Message.objects.order_by('-timestamp').all()[:50]
