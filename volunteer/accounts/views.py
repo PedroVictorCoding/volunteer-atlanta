@@ -25,7 +25,7 @@ class LogView(TemplateView):
         logs            = VolunteeringLog.objects.all().order_by('?')
         user = User.objects.get(id=request.user.id)
         token = user.pk
-        token = str(token).zfill(7)
+        token = str(token).zfill(6)
         args            = {'form': form, 'logs': logs, 'token': token}
         return render(request, self.template_name, args)
 
@@ -64,7 +64,7 @@ def other_profile(request, pk=None):
         user = request.user
     form            = LogForm()
     token = user.pk
-    token = str(token).zfill(7)
+    token = str(token).zfill(6)
     logs            = VolunteeringLog.objects.filter(user=user)
     args            = {'form': form, 'logs': logs, 'user': user, 'token': token}
     return render(request, 'accounts/other_profile.html', args)

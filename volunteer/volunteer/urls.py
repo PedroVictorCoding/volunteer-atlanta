@@ -34,4 +34,7 @@ urlpatterns = [
 
     #Messaging URLs
     path('room/', include('messaging.urls')),
+
+    #Clubs URLs
+    path('clubs/', include('clubs.urls')),
 ]
