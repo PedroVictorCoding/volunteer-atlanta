@@ -10,12 +10,14 @@
 <style media="screen">
 
   @media screen and (max-width: 700px){
-  .mobile{ visibility: visible; }  /* show it on smaller screen */
-  .computer{ visibility: hidden; }
+  .mobile{ display: block;
+    text-align:center;
+  }  /* show it on smaller screen */
+  .computer{ display: none; }
   }
   @media screen and (min-width: 701px) {
-  .mobile{ visibility: hidden; }   /* hide it on larger screens */
-  .computer{ visibility: visible; }
+  .mobile{ display: none; }   /* hide it on larger screens */
+  .computer{ display: block; }
   }
 
   .row{
@@ -23,14 +25,15 @@
     text-align:center
   }
   .club-title{
+    color:#fff;
     font-size:500%;
     line-height:100%;
     text-align: center;
-    margin-top:45%;
 
   }
   .club-slogan{
-    font-size: 30px;
+    color:#fff;
+    font-size: 150%;
     margin-top:30px;
   }
   .artwork{
@@ -40,9 +43,11 @@
 
 </style>
 
-<body class="computer" style="width:100%">
+<body>
 
-  <div style="!width:100%; height:100vh; background:#f71735">
+<div class="computer" style="width:100%">
+
+  <div style="!width:100%; height:100vh; background:#f71735;">
     <div class="container-fluid">
       <div class="row">
         <div class="col">
@@ -87,9 +92,23 @@
     </div>
 
   </div>
-</body>
+</div>
 
-<body class="mobile">
+<div class="mobile">
+  <div style="!width:100%; height:100vh; background:#f71735;">
+    <div class="container-fluid" style="padding-top:35vh">
+      <h1 class="text-uppercase club-title">Robotics</h1>
+      <p class="club-slogan">We are the North Atlanta Warbotz, a high school robotics team that combines STEM and teamwork to foster academic growth and skill.</p>
+      <a class="btn btn-lg btn-light" href="#">Get More</a>
+    </div>
+  </div>
+  <div style="!width:100%; height:100vh; background:#212121">
+    <div class="container-fluid">
+
+    </div>
+  </div>
+</div>
+
 
 </body>
 

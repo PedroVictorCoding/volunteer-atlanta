@@ -38,9 +38,22 @@
       </div>
    </nav>
 
+
+<div id='div11' style='overflow:scroll;overflow-x:hidden;height:80vh;'>
+   {% for message in messages %}
+
+  <div class="container" style="margin-top:20px" id='div12'>
+    <small class="form-text text-muted">{{ message.timestamp }}</small>
+    <p class="p-1 text-muted" style="text-align:right;float:right">by {{ message.author }}</p>
+    <h4 class="p-1">{{ message.message }}</h4>
+  </div>
+   {% endfor %}
+</div>
+
+
    <form style="padding:10px" method="post">
 
-   <div class="form-group">
+   <div class="form-group container">
      {% csrf_token %}
      {{ form.as_p }}
   <button type="submit" id="submitting" class="btn btn-primary btn-lg btn-block">Send</button>
