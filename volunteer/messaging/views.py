@@ -26,8 +26,8 @@ class RoomView(TemplateView):
     @method_decorator(login_required)
     def get(self, request, room_name):
         form        = MessageForm()
-        messages    = Message.objects.all().order_by('-date')
-        args        = {}
+        messages    = Message.objects.order_by('timestamp').filter(room=room_name)
+        args            = {'form': form, 'messages': messages}
         print(room_name)
         return render(request, self.template_name, args)
     def post(self, request, room_name):
@@ -35,11 +35,11 @@ class RoomView(TemplateView):
         if form.is_valid():
             message         = form.save(commit=False)
             message.room    = room_name
-            message.user    = request.user
+            message.author    = request.user
             content         = form.cleaned_data['message']
             message.save()
             form            = MessageForm()
-            return HttpResponseRedirect('message:room')
-        args        = {}
+            return HttpResponseRedirect('/room/'+ room_name)
+        args        = {'form': form}
         print(room_name)
         return render(request, self.template_name, args)

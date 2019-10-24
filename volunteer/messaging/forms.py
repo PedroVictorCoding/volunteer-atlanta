@@ -3,8 +3,8 @@ from .models import Message
 
 class MessageForm(forms.ModelForm):
 
-    
-    message = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Title'}))
+
+    message = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter a Message'}))
 
     class Meta:
         model = Message
