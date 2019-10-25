@@ -4,11 +4,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
-from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetDoneView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView
+from django.contrib.auth.views import PasswordResetDoneView
 from django.contrib.auth.views import PasswordResetConfirmView, PasswordResetCompleteView
-from .views import home, robotics
+from lobby.views import lobby
 
 urlpatterns = [
-    path('', home, name='clubs_homepage'),
-    path('robotics/', robotics, name="robotics_homepage"),
+    path('', lobby, name="lobby")
 ]

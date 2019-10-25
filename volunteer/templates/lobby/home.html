@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>NAHS Student Lab</title>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito|PT+Sans&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js""></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+{% endblock title %}
+
+{% block content %}
+
+<style media="screen">
+  body{
+    font-weight:700;
+  }
+  .awesome-card{
+    border-radius: 20px;
+
+  }
+</style>
+
+<body class="container">
+
+  <nav class="navbar navbar-light">
+    <a class="navbar-brand" href="{% url 'lobby' %}">NAHS Student Lab</a>
+    {% if user.is_authenticated %}
+    <div class="dropdown">
+  <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    More
+  </button>
+  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Home</a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms <span class="badge badge-secondary">New</span></a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'clubs_homepage' %}">Clubs <span class="badge badge-secondary">New</span></a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
+
+  </div>
+</div>
+    {% else %}
+    <div class="form-inline" style="">
+      <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
+      <a class="btn btn-outline-dark" style="margin-left:10px" href="{% url 'login' %}">Signup</a>
+    </div>
+    {% endif %}
+  </nav>
+
+
+<div style="margin-top:25px;margin-bottom:25px">
+    <div class="row">
+      <div class="col">
+        <span class="text-dark" style="font-size:40px;">Student <span class="text-success">LAB</span></span>
+        <br>
+        <span class="text-dark" style="font-size:30px">Find anything you need for <span class="text-success">success</span></span>
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card text-white bg-danger mb-3" style="">
+    <div class="card-header">Volunteer Hub</div>
+    <div class="card-body">
+      <h5 class="card-title">Get involved in the community</h5>
+      <p class="card-text">Find volunteering activities, or people to participate, and log all your hours.</p>
+      <a href="/volunteer" class="btn btn-light btn-block">Start</a>
+    </div>
+  </div>
+
+<br>
+
+  <div class="card text-white bg-primary mb-3" style="">
+    <div class="card-header">Clubs</div>
+    <div class="card-body">
+      <h5 class="card-title">Get to know all the clubs you can participate</h5>
+      <p class="card-text">Find your favourite clubs and get more in their websites</p>
+      <a href="/clubs" class="btn btn-light btn-block">Start</a>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="card text-white bg-success mb-3" style="">
+    <div class="card-header">Rooms</div>
+    <div class="card-body">
+      <h5 class="card-title">Communicate with Students, Teachers and more</h5>
+      <p class="card-text">Enter or Create a room to talk with others faster then ever</p>
+      <a href="/room" class="btn btn-light btn-block">Start</a>
+    </div>
+  </div>
+
+
+
+</body>
+{% endblock content %}
