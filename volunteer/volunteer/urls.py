@@ -26,8 +26,11 @@ urlpatterns = [
     #Admin URLs
     path('admin/', admin.site.urls),
 
-    #Home URLs
-    path('', include('home.urls')),
+    #Lobby URLs
+    path('', include('lobby.urls')),
+
+    #Volunteering Home URLs
+    path('volunteer/', include('home.urls')),
 
     #Accounts URLs
     path('accounts/', include('accounts.urls')),
