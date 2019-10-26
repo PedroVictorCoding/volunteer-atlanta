@@ -3,6 +3,8 @@
 
 {% block title %}
 <title>Clubs</title>
+
+
 {% endblock title %}
 
 {% block content %}
@@ -45,69 +47,45 @@
 
 <body>
 
-<div class="computer" style="width:100%">
 
-  <div style="!width:100%; height:100vh; background:#f71735;">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <h1 class="text-uppercase club-title">Robotics</h1>
-          <p class="club-slogan" style="vertical-align:50%">We are the North Atlanta Warbotz, a high school robotics team that combines STEM and teamwork to foster academic growth and skill.</p>
-          <a class="btn btn-lg btn-light" href="#">Get More</a>
-        </div>
-        <div class="col artwork" style="height:100vh">
-          [artwork here]
-        </div>
-      </div>
+  <body class="container">
+
+    <nav class="navbar navbar-light">
+      <a class="navbar-brand" href="{% url 'lobby' %}">NAHS Student Lab</a>
+      {% if user.is_authenticated %}
+      <div class="dropdown">
+    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      More
+    </button>
+    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Home</a>
+      <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms <span class="badge badge-secondary">New</span></a>
+      <a class="dropdown-item" style="color:#000" href="{% url 'clubs_homepage' %}">Clubs <span class="badge badge-secondary">New</span></a>
+      <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
+
     </div>
   </div>
-
-  <div style="!width:100%; height:100vh; background:#090446">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <h1 class="text-uppercase club-title">Politics</h1>
-          <p class="club-slogan" style="vertical-align:50%">[politics slogan]</p>
-          <a class="btn btn-lg btn-light" href="#">Get More</a>
-        </div>
-        <div class="col artwork" style="height:100vh">
-          [artwork here]
-        </div>
+      {% else %}
+      <div class="form-inline" style="">
+        <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
+        <a class="btn btn-outline-dark" style="margin-left:10px" href="{% url 'login' %}">Signup</a>
       </div>
-    </div>
+      {% endif %}
+    </nav>
 
-  </div>
-  <div style="!width:100%; height:100vh; background:#517754">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <h1 class="text-uppercase club-title">Dungeons & Dragons</h1>
-          <p class="club-slogan" style="vertical-align:50%">[D&D slogan]</p>
-          <a class="btn btn-lg btn-light" href="#">Get More</a>
-        </div>
-        <div class="col artwork" style="height:100vh">
-          [artwork here]
-        </div>
-      </div>
-    </div>
-
+<div class="card text-white mb-3" style="background-color:#f71735">
+  <div class="card-body">
+    <h5 class="card-title">Robotics</h5>
+    <p class="card-text">We are the North Atlanta Warbotz, a high school robotics team that combines STEM and teamwork to foster academic growth and skill.</p>
+    <a href="{% url 'robotics_homepage' %}" class="btn btn-light btn-block">Go to Robotics</a>
   </div>
 </div>
 
-<div class="mobile">
-  <div style="!width:100%; height:100vh; background:#f71735;">
-    <div class="container-fluid" style="padding-top:35vh">
-      <h1 class="text-uppercase club-title">Robotics</h1>
-      <p class="club-slogan">We are the North Atlanta Warbotz, a high school robotics team that combines STEM and teamwork to foster academic growth and skill.</p>
-      <a class="btn btn-lg btn-light" href="#">Get More</a>
-    </div>
-  </div>
-  <div style="!width:100%; height:100vh; background:#212121">
-    <div class="container-fluid">
 
-    </div>
-  </div>
-</div>
 
 
 </body>

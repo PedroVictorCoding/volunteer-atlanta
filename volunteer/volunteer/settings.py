@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'messaging',
     'clubs',
 
-    
-    'channels',
+
+    # 'channels',
 ]
 
 MIDDLEWARE = [
