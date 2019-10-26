@@ -3,45 +3,61 @@
 
 {% block title %}
 <title>Robotics</title>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link href="https://fonts.googleapis.com/css?family=Nunito|PT+Sans&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js""></script>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 {% endblock title %}
 
 
 {% block content %}
 
-<body>
+<body class="container">
 
-    <nav class="site-header sticky-top py-1">
-       <div class="container-fluid">
-         <a class="navbar-brand" href="{% url 'robotics_homepage' %}">NAHS Warbotz</a>
-         {% if user.is_authenticated %}
-          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown01"
-          style="float:right;" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">More</button>
-            <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" style="color:#000" href="{% url 'lobby' %}">Lobby</a>
-              <a class="dropdown-item" style="color:#000" href="{% url 'clubs_homepage' %}">Clubs</a>
-              <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms (Coming Soon)</a>
-              <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
-            </div>
-          {% else %}
-          <a class="btn btn-primary" style="float:right" href="{% url 'login' %}">Login</a>
-          {% endif %}
-        </div>
-     </nav>
+  <nav class="navbar navbar-light">
+    <a class="navbar-brand" href="{% url 'lobby' %}">NAHS Robotics</a>
+    {% if user.is_authenticated %}
+    <div class="dropdown">
+  <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    More
+  </button>
+  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Home</a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms <span class="badge badge-secondary">New</span></a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'clubs_homepage' %}">Clubs <span class="badge badge-secondary">New</span></a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
 
+  </div>
+</div>
+    {% else %}
+    <div class="form-inline" style="">
+      <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
+      <a class="btn btn-outline-dark" style="margin-left:10px" href="{% url 'login' %}">Signup</a>
+    </div>
+    {% endif %}
+  </nav>
+
+  <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Remember</h4>
+    <p>Robotics holds meetings every Tuesdays and Thursdays after school in the first floor</p>
+    <hr>
+    <p class="mb-0">If you have any question go into the Robotics Room <a href="/room/robotics">here</a></p>
+  </div>
+
+  <div class="jumbotron text-white text-center" style="background:#3c3c3c">
+                    <h1 class="title">NAHS Warbotz</h1>
+                    <h4>We are the North Atlanta Warbotz, a high school robotics team that combines STEM and teamwork
+                        to foster
+                        academic growth and skill.</h4>
+                    <br>
+                    <h4>Every year, we come together to brainstorm, plan, and build an efficient and competitive robot
+                        for
+                        <a href="http://www.firstinspires.org/" target="_blank" class="btn-sm btn-danger">FIRST</a>, an
+                        international youth organization that operates the First Robotics Competition, First
+                        Lego League, First Lego League Jr., and First Tech Challenge competitions.</h4>
+                    <br>
+
+  </div>
 
 </body>
 
