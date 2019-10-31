@@ -2,54 +2,49 @@
 {% load static %}
 
 {% block title %}
-<title>NAHS Volunteer Hub</title>
+<title>Volunteer Hub</title>
 {% endblock title %}
 
 {% block content %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link href="https://fonts.googleapis.com/css?family=Nunito|PT+Sans&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js""></script>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-<body>
-  <nav class="site-header sticky-top py-1">
-     <div class="container-fluid">
-       <a class="navbar-brand" href="{% url 'home' %}">NAHS Volunteer Hub</a>
-       {% if user.is_authenticated %}
-        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown01"
-        style="float:right;" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">More</button>
-          <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Home</a>
-              <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms <span class="badge badge-secondary">New</span></a>
-            <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
-          </div>
-        {% else %}
-        <a class="btn btn-primary" style="float:right" href="{% url 'login' %}">Login</a>
-        {% endif %}
-      </div>
-   </nav>
-  <div class="container p-2">
-   <div class="alert alert-success alert-dismissible fade show" role="alert">
-     <strong>NAHS Volunteer Hub is live!</strong> We have recently launched. Make sure to participate in this fantastic community.
-     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-       <p aria-hidden="true">&times;</p>
-     </button>
-   </div>
+<body class="container">
+  <nav class="navbar navbar-light">
+    <a class="navbar-brand" href="{% url 'lobby' %}">NAHS Student Lab</a>
+    {% if user.is_authenticated %}
+    <div class="dropdown">
+
+    {% if user.is_authenticated %}
+    <button onclick="createPublication()" class="btn btn-primary" name="button">Create a Post</button>
+    {% endif %}
+
+  <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    More
+  </button>
+
+  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Home</a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms <span class="badge badge-secondary">New</span></a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'clubs_homepage' %}">Clubs <span class="badge badge-secondary">New</span></a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
+
   </div>
+</div>
+    {% else %}
+    <div class="form-inline" style="">
+      <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
+      <a class="btn btn-outline-dark" style="margin-left:10px" href="{% url 'login' %}">Signup</a>
+    </div>
+    {% endif %}
+  </nav>
+
 <br>
 
-
-
-<style media="screen">
+<style>
   div.fixeds {
   position: fixed;
   float:right;
@@ -151,9 +146,9 @@
 </div>
 
 
-<div class="jumbotron p-md-3 shadow-sm border text-white rounded bg-white">
+<div style="margin-bottom:-10px" class="jumbotron p-md-3 shadow-sm border text-white rounded bg-white">
   <input class="form-control" id="findtoken" placeholder="Find Users (Use Token)">
-  <button type="submit" onclick="find()" class="btn btn-primary btn-block mt-sm-2">Search</button>
+  <button type="submit" onclick="find()" style="margin-top:15px" class="btn btn-primary btn-block">Search</button>
 </div>
 
 <script>
@@ -172,10 +167,21 @@
 <br>
 
 {% if user.is_authenticated %}
-<div style="margin-top:-20px" class="container-fluid rounded border shadow-lg">
+
+
+<script>
+  function createPublication(){
+      document.getElementById('publicationForm').style.display = "block";
+  }
+  function hidePublication(){
+      document.getElementById('publicationForm').style.display = "none";
+  }
+</script>
+
+<div id="publicationForm" style="display:none;" class="container-fluid rounded border shadow-lg">
 
 <form style="padding:10px" method="post">
-  <h4>Publication</h4>
+  <h4>Publication</h4><button class="btn btn-light" onclick="hidePublication()" style="float:right;margin-bottom:10px;margin-top:-10px">&times;</button>
 <div class="form-group">
   {% csrf_token %}
   {{ form.as_p }}
@@ -199,38 +205,7 @@
 {% endif %}
 
 
-  <h3 style="margin-bottom:15px">Recommended for you</h3>
-      <div class="container-fluid p-3 rounded border shadow-lg">
-        <div class="col p-4 d-flex flex-colunm positon-static" style="margin-bottom:10px">
-          <div class="container">
-            <div class="row">
-              <div class="col">
-                <small class="form-text text-muted">{{ random_posts.date }}</small>
-              </div>
-              <div class="col">
-                <p class="p-1 text-muted" style="text-align:right;float:right">by {{ random_posts.user }}</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <h4 class="p-1">{{ random_posts.title }}</h4>
-              </div>
-              <div class="col">
-                <a class="btn btn-primary" style="float:right" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  Expand for more info
-                </a>
-              </div>
-            </div>
-            <div class="collapse" id="collapseExample">
-              <h5 class="p-1">{{ random_posts.description|linebreaks }}</h5>
-              <h5 class="p-1">Address: {{ random_post.address }}</h5>
-              <h5 class="p-1"><a href="{{ random_post.website }}"></a>{{ random_posts.website }}</h5>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
+<!--
   <h3 style="margin-bottom:15px">Follow other users</h3>
   <div class="container-fluid p-3 rounded border shadow-lg">
     <div class="p-3">
@@ -239,7 +214,7 @@
     {% endfor %}
     </div>
   </div>
-
+-->
 
 
 
