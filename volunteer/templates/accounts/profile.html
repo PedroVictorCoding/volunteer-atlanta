@@ -6,39 +6,38 @@
 {% endblock title %}
 
 {% block content %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Nunito|PT+Sans&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<body class="container">
 
-<nav class="site-header sticky-top py-1">
-   <div class="container-fluid">
-     <a class="navbar-brand" href="/">NAHS Volunteer Hub</a>
-     {% if user.is_authenticated %}
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown01"
-      href="" style="float:right;" data-toggle="dropdown" aria-haspopup="true"
-      aria-expanded="false">More</button>
-        <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" style="color:#000" href="/">Home</a>
-            <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms (Coming Soon)</a>
-          <a class="dropdown-item" style="color:#000" href="/accounts/profile">Profile - {{ request.user }}</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" style="color:#000" href="/about">About</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" style="color:#000" href="/accounts/logout">Logout</a>
-        </div>
-      {% else %}
-      <a class="btn btn-primary" style="float:right" href="/accounts/login">Login</a>
-      {% endif %}
+  <nav class="navbar navbar-light">
+    <a class="navbar-brand" href="{% url 'lobby' %}">NAHS Student Lab</a>
+    {% if user.is_authenticated %}
+    <div class="dropdown">
+  <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    More
+  </button>
+  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Home</a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms <span class="badge badge-secondary">New</span></a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'clubs_homepage' %}">Clubs <span class="badge badge-secondary">New</span></a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
+
+  </div>
+</div>
+    {% else %}
+    <div class="form-inline" style="">
+      <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
+      <a class="btn btn-outline-dark" style="margin-left:10px" href="{% url 'login' %}">Signup</a>
     </div>
- </nav>
+    {% endif %}
+  </nav>
 
 
-<div class="jumbotron">
+<div style="margin-top:10px">
   <div class="container">
     <h3>Participation Points: </h3>
     <br>
