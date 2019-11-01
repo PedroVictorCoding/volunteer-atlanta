@@ -22,7 +22,7 @@ class LogView(TemplateView):
     @method_decorator(login_required)
     def get(self, request, pk=None):
         form            = LogForm()
-        logs            = VolunteeringLog.objects.all().order_by('?')
+        logs            = VolunteeringLog.objects.all().order_by('-')
         user = User.objects.get(id=request.user.id)
         token = user.pk
         token = str(token).zfill(6)
@@ -73,7 +73,7 @@ class Other_LogView(TemplateView):
     template_name = 'accounts/other_profile.html'
     def get(self, request):
         form            = LogForm()
-        logs            = VolunteeringLog.objects.all().order_by('?')
+        logs            = VolunteeringLog.objects.all().order_by('-')
         args            = {'form': form, 'logs': logs}
         return render(request, self.template_name, args)
 
