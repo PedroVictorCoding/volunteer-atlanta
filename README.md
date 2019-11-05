@@ -1,5 +1,5 @@
 # North Atlanta High School Student Lab
-## This the repository of a project for North Atlanta High School, were I was able to build a website for the school, that provides many features for students and teachers
+## This is the repository of a project for North Atlanta High School, were I was able to build a website for the school, that provides many features for students and teachers
 
 ### Website: [NAHS Student Lab](https://atlantavolunteer.pythonanywhere.com/)
 
