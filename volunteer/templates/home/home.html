@@ -5,6 +5,37 @@
 <title>Volunteer Hub</title>
 {% endblock title %}
 
+
+{% block navbar %}
+<nav class="navbar navbar-light">
+  <a class="navbar-brand" href="{% url 'lobby' %}">NAHS Student Lab</a>
+  {% if user.is_authenticated %}
+  <div class="dropdown">
+  <a class="btn text-white btn-primary" onclick="createPublication()">Create a Post</a>
+<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  More
+</button>
+<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
+  <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Home</a>
+  <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms <span class="badge badge-secondary">New</span></a>
+  <a class="dropdown-item" style="color:#000" href="{% url 'clubs_homepage' %}">Clubs <span class="badge badge-secondary">New</span></a>
+  <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
+
+</div>
+</div>
+  {% else %}
+  <div class="form-inline" style="">
+    <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
+    <a class="btn btn-outline-dark" style="margin-left:10px" href="{% url 'signup' %}">Signup</a>
+  </div>
+  {% endif %}
+</nav>
+{% endblock %}
+
 {% block content %}
 
 
