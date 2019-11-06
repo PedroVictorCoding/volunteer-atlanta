@@ -5,37 +5,39 @@
 <title>Volunteer Hub</title>
 {% endblock title %}
 
+
+{% block navbar %}
+<nav class="navbar navbar-light">
+  <a class="navbar-brand" href="{% url 'lobby' %}">NAHS Student Lab</a>
+  {% if user.is_authenticated %}
+  <div class="dropdown">
+  <a class="btn text-white btn-primary" onclick="createPublication()">Create a Post</a>
+<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  More
+</button>
+<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
+  <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Home</a>
+  <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms <span class="badge badge-secondary">New</span></a>
+  <a class="dropdown-item" style="color:#000" href="{% url 'clubs_homepage' %}">Clubs <span class="badge badge-secondary">New</span></a>
+  <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
+
+</div>
+</div>
+  {% else %}
+  <div class="form-inline" style="">
+    <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
+    <a class="btn btn-outline-dark" style="margin-left:10px" href="{% url 'signup' %}">Signup</a>
+  </div>
+  {% endif %}
+</nav>
+{% endblock %}
+
 {% block content %}
 
-
-<body class="container">
-
-    <nav class="navbar navbar-light">
-      <a class="navbar-brand" href="{% url 'lobby' %}">NAHS Student Lab</a>
-      {% if user.is_authenticated %}
-      <div class="dropdown">
-    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      More
-    </button>
-    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Home</a>
-      <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms <span class="badge badge-secondary">New</span></a>
-      <a class="dropdown-item" style="color:#000" href="{% url 'clubs_homepage' %}">Clubs <span class="badge badge-secondary">New</span></a>
-      <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
-
-    </div>
-  </div>
-      {% else %}
-      <div class="form-inline" style="">
-        <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
-        <a class="btn btn-outline-dark" style="margin-left:10px" href="{% url 'login' %}">Signup</a>
-      </div>
-      {% endif %}
-    </nav>
 
 <br>
 
@@ -244,7 +246,6 @@
 
 </div>
 
-</body>
 {% endblock content %}
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>

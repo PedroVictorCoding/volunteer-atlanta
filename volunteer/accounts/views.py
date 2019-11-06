@@ -41,6 +41,7 @@ class LogView(TemplateView):
             hours               = form.cleaned_data['hours']
             date_activity       = form.cleaned_data['date_activity']
             supervisor_contact  = form.cleaned_data['supervisor_contact']
+            signature           = form.cleaned_data['signature']
             form                = LogForm()
             return HttpResponseRedirect('/accounts/profile')
         args = {'form': form}

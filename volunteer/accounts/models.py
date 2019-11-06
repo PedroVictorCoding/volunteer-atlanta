@@ -24,3 +24,4 @@ class VolunteeringLog(models.Model):
     hours               = models.CharField(max_length=250)
     date_activity       = models.CharField(max_length=250)
     supervisor_contact  = models.CharField(max_length=1000)
+    signature           = models.CharField(max_length=50000)
