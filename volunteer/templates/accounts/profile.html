@@ -3,39 +3,14 @@
 
 {% block title %}
 <title>Profile - NAHS Volunteer Hub</title>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js" charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
 {% endblock title %}
 
 {% block content %}
-
-<body class="container">
-
-  <nav class="navbar navbar-light">
-    <a class="navbar-brand" href="{% url 'lobby' %}">NAHS Student Lab</a>
-    {% if user.is_authenticated %}
-    <div class="dropdown">
-  <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    More
-  </button>
-  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Home</a>
-    <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms <span class="badge badge-secondary">New</span></a>
-    <a class="dropdown-item" style="color:#000" href="{% url 'clubs_homepage' %}">Clubs <span class="badge badge-secondary">New</span></a>
-    <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
-
-  </div>
-</div>
-    {% else %}
-    <div class="form-inline" style="">
-      <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
-      <a class="btn btn-outline-dark" style="margin-left:10px" href="{% url 'login' %}">Signup</a>
-    </div>
-    {% endif %}
-  </nav>
-
 
 <div style="margin-top:10px">
   <div class="container">
@@ -56,15 +31,42 @@
   <div class="container bg-white border rounded shadow-sm flex-md-row mb-4">
     <form style="padding:10px" method="post">
       <h4>Log Your Activities:</h4>
-    <div class="form-group">
+    <div id="formDiv" class="form-group">
       {% csrf_token %}
       {{ form.as_p }}
-      <small>This action is not reversable</small>
+      <div id="signatureBox"></div>
+      <br><small>This action is not reversable</small>
       <button type="submit" id="submitting" data class="btn btn-primary btn-lg btn-block">Submit</button>
       </div>
     </form>
 
   </div>
+
+  <script>
+
+    var wind = document.getElementById('formDiv').offsetWidth;
+
+    function setup(){
+      var cnv = createCanvas(wind, 150);
+      background(51);
+      cnv.parent('signatureBox');
+    }
+
+    var array_save = [];
+    var signatureCoordinates = "";
+
+    function draw() {
+      stroke(255);
+      if (mouseIsPressed === true) {
+        strokeWeight(2);
+        line(mouseX, mouseY, pmouseX, pmouseY);
+        append(array_save, mouseX + "," + mouseY + "," + pmouseX + "," + pmouseY);
+        document.getElementById("signatureArray").value = array_save;
+        signatureCoordinates = document.getElementById('signatureArray').value;
+      }
+    }
+  </script>
+
 
 <br>
 
@@ -87,9 +89,16 @@
               <h5 class="p-1">Activity: {{ log.activity|linebreaks }}</h5>
               <h5 class="p-1">Hours: {{ log.hours }}</h5>
               <h5 class="p-1">Supervisor: {{ log.supervisor_contact }}</h5>
+              <h5 id="StoredSignature" class="p-1">Signature: </h5>
             </div>
           </div>
           </div>
+
+  <!-- <script src="{% static 'loadSignature.js' %}" charset="utf-8">
+          var array_save = {{ log.signature }};
+          </script> -->
+
+
   {% endfor %}
 
 
