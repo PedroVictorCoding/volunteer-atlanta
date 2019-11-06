@@ -6,11 +6,10 @@ from accounts.models import VolunteeringLog
 class SignupForm(UserCreationForm):
     username    = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Username'}))
     email       = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Email'}))
-    grade       = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Grade (9, 10, 11, 12)'}))
     first_name  = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter First Name'}))
     last_name   = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Last Name'}))
-    password1   = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
-    password2   = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Re-enter Password'}))
+    password1   = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'password', 'placeholder': 'Enter Password'}))
+    password2   = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'password',  'placeholder': 'Re-enter Password'}))
 
 
     class Meta:
@@ -20,7 +19,6 @@ class SignupForm(UserCreationForm):
             'first_name',
             'last_name',
             'email',
-            'grade',
             'password1',
             'password2',
         )
@@ -31,7 +29,6 @@ class SignupForm(UserCreationForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name  = self.cleaned_data['last_name']
         user.email      = self.cleaned_data['email']
-        grade           = super(SignupForm, self).save(commit=False)
 
         if commit:
             user.save()

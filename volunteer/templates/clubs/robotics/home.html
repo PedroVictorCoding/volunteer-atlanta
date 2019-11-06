@@ -8,35 +8,6 @@
 
 {% block content %}
 
-<body class="container">
-
-  <nav class="navbar navbar-light">
-    <a class="navbar-brand" href="{% url 'lobby' %}">NAHS Robotics</a>
-    {% if user.is_authenticated %}
-    <div class="dropdown">
-  <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    More
-  </button>
-  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Home</a>
-    <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms <span class="badge badge-secondary">New</span></a>
-    <a class="dropdown-item" style="color:#000" href="{% url 'clubs_homepage' %}">Clubs <span class="badge badge-secondary">New</span></a>
-    <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
-
-  </div>
-</div>
-    {% else %}
-    <div class="form-inline" style="">
-      <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
-      <a class="btn btn-outline-dark" style="margin-left:10px" href="{% url 'login' %}">Signup</a>
-    </div>
-    {% endif %}
-  </nav>
-
   <div class="alert alert-danger" role="alert">
     <h4 class="alert-heading">Remember</h4>
     <p>Robotics holds meetings every Tuesdays and Thursdays after school in the first floor</p>
@@ -68,7 +39,7 @@
                                           <img class="img" src="assets/img2/aps.png" style="width: 24rem;">
                                       </div>
                                       <div class="card-body">
-                                        
+
                                       </div>
                                   </div>
                               </div>
@@ -107,8 +78,6 @@
                           </div>
 
 </div>
-
-</body>
 
 {% endblock content %}
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
