@@ -60,6 +60,7 @@ class LogForm(forms.ModelForm):
 
     supervisor_contact  = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Enter Supervisor's Name and Contact"}))
 
+    signature           = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': '', 'style': 'visibility:hidden', 'id': 'signatureArray'}))
 
     class Meta:
         model   = VolunteeringLog
@@ -69,4 +70,5 @@ class LogForm(forms.ModelForm):
             'hours',
             'date_activity',
             'supervisor_contact',
+            'signature'
             )
