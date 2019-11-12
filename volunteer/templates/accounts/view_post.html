@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Login - NAHS Volunteer Hub</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js" charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+
+{% endblock title %}
+
+{% block content %}
+
+  {% for log in logs %}
+  <div class="container bg-white border rounded-lg shadow-sm flex-md-row mb-4">
+          <div class="col p-4 d-flex flex-colunm positon-static" id="formDiv">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <small class="form-text text-muted">Date(s) of Activity: {{ log.date_activity }}</small>
+                </div>
+                <div class="col">
+                  <!--<p class="p-1 text-muted" style="text-align:right;float:right">by {{ log.user }}</p>-->
+                </div>
+              </div>
+              <h5 class="p-1">Agency Name: {{ log.agency_name }}</h5>
+              <h5 class="p-1">Activity: {{ log.activity|linebreaks }}</h5>
+              <h5 class="p-1">Hours: {{ log.hours }}</h5>
+              <h5 class="p-1">Supervisor: {{ log.supervisor_contact }}</h5>
+              <h5 id="StoredSignature" class="p-1">Signature:
+                <div style="margin-top:10px" id="signatureBox"><div>
+              </h5>
+            </div>
+          </div>
+          </div>
+
+              <script>
+
+                var wind = document.getElementById('signatureBox').offsetWidth;
+                var array_sign = "{{ log.signature }}".split(",");
+
+                function setup(){
+                  var cnv = createCanvas(wind, 150);
+                  background(51);
+                  cnv.parent('signatureBox');
+                  stroke(255);
+                  strokeWeight(2);
+
+                }
+
+                function draw() {
+
+                  for (i = 0; i < array_sign.length; i+= 4) {
+                    line(array_sign[i], array_sign[i+1], array_sign[i+2], array_sign[i+3]);
+                  }
+
+                }
+              </script>
+    {% endfor %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+{% endblock content %}

@@ -92,6 +92,13 @@ def signup(request):
     return render(request, 'accounts/signup.html', args)
 
 
+def view_post(request, pk=None):
+    form            = LogForm()
+    logs            = VolunteeringLog.objects.filter(signature=pk)
+    args            = {'form': form, 'logs': logs}
+    return render(request, 'accounts/view_post.html', args)
+
+
 class ProfileUpdate(UpdateView):
     model           = UserProfile
     template_name   = 'accounts/editprofileform.html'
