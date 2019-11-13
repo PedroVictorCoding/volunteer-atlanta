@@ -94,7 +94,7 @@ def signup(request):
 
 def view_post(request, pk=None):
     form            = LogForm()
-    logs            = VolunteeringLog.objects.filter(signature=pk)
+    logs            = VolunteeringLog.objects.filter(pk=pk)
     args            = {'form': form, 'logs': logs}
     return render(request, 'accounts/view_post.html', args)
 
