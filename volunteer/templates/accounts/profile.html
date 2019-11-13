@@ -27,7 +27,7 @@
     For Example: /accounts/profile/(Your Token Here)
   </p>
   </div>
-  
+
   <div id="volunteeringLogger" class="container bg-white border rounded shadow-sm flex-md-row mb-4">
     <form style="padding:10px" method="post">
       <h4>Log Your Activities:</h4>
@@ -90,7 +90,7 @@
               <h5 class="p-1">Activity: {{ log.activity|linebreaks }}</h5>
               <h5 class="p-1">Hours: {{ log.hours }}</h5>
               <h5 class="p-1">Supervisor: {{ log.supervisor_contact }}</h5>
-              <h5 id="StoredSignature" class="p-1">Signature: <a class="btn btn-primary" href="/accounts/post/{{ log.signature }}">Click to view</a></h5>
+              <h5 id="StoredSignature" class="p-1">Signature: <a class="btn btn-primary" href="/accounts/post/{{ log.pk }}">Click to view</a></h5>
             </div>
           </div>
           </div>
