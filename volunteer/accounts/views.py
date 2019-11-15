@@ -88,8 +88,8 @@ def signup(request):
     else:
         form = SignupForm()
 
-    args = {'form': form}
-    return render(request, 'accounts/signup.html', args)
+        args = {'form': form}
+        return render(request, 'accounts/signup.html', args)
 
 
 def view_post(request, pk=None):
