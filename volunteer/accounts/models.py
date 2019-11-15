@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete="")
-    student_id = models.IntegerField()
+    student_id = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.username
