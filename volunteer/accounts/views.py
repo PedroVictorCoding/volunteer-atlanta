@@ -82,7 +82,7 @@ class Other_LogView(TemplateView):
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')
     else:
