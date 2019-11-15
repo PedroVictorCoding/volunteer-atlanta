@@ -6,8 +6,9 @@ from accounts.models import VolunteeringLog
 class SignupForm(UserCreationForm):
     username    = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Username'}))
     email       = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Email'}))
-    first_name  = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter First Name'}))
-    last_name   = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Last Name'}))
+    first_name  = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter First Name'}))
+    last_name   = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Last Name'}))
+    student_id  = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Student ID'}))
     password1   = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'password', 'placeholder': 'Enter Password'}))
     password2   = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'password',  'placeholder': 'Re-enter Password'}))
 
@@ -18,6 +19,7 @@ class SignupForm(UserCreationForm):
             'username',
             'first_name',
             'last_name',
+            'student_id',
             'email',
             'password1',
             'password2',
@@ -25,10 +27,11 @@ class SignupForm(UserCreationForm):
 
 
     def save(self, commit=True):
-        user            = super(SignupForm, self).save(commit=False)
+        user = super(SignupForm, self).save(commit=False)
         user.first_name = self.cleaned_data['first_name']
-        user.last_name  = self.cleaned_data['last_name']
-        user.email      = self.cleaned_data['email']
+        user.last_name = self.cleaned_data['last_name']
+        user.student_id = self.cleaned_data['student_id']
+        user.email = self.cleaned_data['email']
 
         if commit:
             user.save()
