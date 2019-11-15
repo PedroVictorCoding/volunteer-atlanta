@@ -13,6 +13,7 @@ from accounts.form import LogForm
 from django.views.generic import TemplateView
 from django.contrib.admin.models import ADDITION, LogEntry
 from home.forms import HomeForm
+from django.contrib.auth import authenticate, login
 
 
 @method_decorator(login_required, name='get')
@@ -83,13 +84,17 @@ def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_user = form.save()
+            new_user = authenticate(username=form.cleaned_data['username'],
+                                    password=form.cleaned_data['password1'],
+                                    )
+            login(request, new_user)
             return HttpResponseRedirect('/')
     else:
         form = SignupForm()
 
-        args = {'form': form}
-        return render(request, 'accounts/signup.html', args)
+    args = {'form': form}
+    return render(request, 'accounts/signup.html', args)
 
 
 def view_post(request, pk=None):
