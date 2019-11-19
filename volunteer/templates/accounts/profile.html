@@ -14,18 +14,18 @@
 
 <div style="margin-top:10px">
   <div class="container">
-    <h3>Participation Points: </h3>
-    <br>
     <h3>Profile:</h3>
-    <h4>Username: {{ user }}</h4>
-    <h5>First Name: {{ user.first_name }}</h5>
-    <h5>Last Name: {{ user.last_name }}</h5>
-    <h5>Email: {{ user.email }}</h5>
-    <h5>Your Token: {{ token }}</h5>
+    <ul class="list-group">
+      <li class="list-group-item">Username: {{ user }}</li>
+      <li class="list-group-item">First Name: {{ user.first_name }}</li>
+      <li class="list-group-item">Last Name: {{ user.last_name }}</li>
+      <li class="list-group-item">Email: {{ user.email }}</li>
+      <li class="list-group-item">Your Token: {{ token }}</li>
+    </ul>
     <p>A token is what you give to people so that they can find you
     <br>
     For Example: /accounts/profile/(Your Token Here)
-  </p>
+    </p>
   </div>
 
   <div id="volunteeringLogger" class="container bg-white border rounded shadow-sm flex-md-row mb-4">
@@ -72,6 +72,31 @@
 <br>
 
 <h3 class="container">Community Service Log:</h3>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Agency Name</th>
+      <th scope="col">Activity</th>
+      <th scope="col">Hours</th>
+      <th scope="col">Date</th>
+      <th scope="col">Supervisor and Contact</th>
+      <th scope="col">View More (Signature)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for log in logs %}
+    <tr>
+      <td>{{ log.agency_name }}</td>
+      <td>{{ log.activity|linebreaks }}</td>
+      <td>{{ log.hours }}</td>
+      <td>{{ log.supervisor_contact }}</td>
+      <td><a class="btn btn-primary" href="/accounts/post/{{ log.pk }}">Click to view</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
   {% for log in logs %}
 
