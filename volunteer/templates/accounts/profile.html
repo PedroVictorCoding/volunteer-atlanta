@@ -91,14 +91,23 @@
       <td>{{ log.agency_name }}</td>
       <td>{{ log.activity|linebreaks }}</td>
       <td>{{ log.hours }}</td>
+      <td>{{ log.date_activity }}</td>
       <td>{{ log.supervisor_contact }}</td>
       <td><a class="btn btn-primary" href="/accounts/post/{{ log.pk }}">Click to view</a></td>
     </tr>
+
+    <script>
+      function IndividualPost(){
+        window.location = "/accounts/profile/" + {{ log.signature }};
+      }
+    </script>
+
     {% endfor %}
   </tbody>
 </table>
 
-  {% for log in logs %}
+<!--
+for loop goes here
 
   <div class="container bg-white border rounded-lg shadow-sm flex-md-row mb-4">
           <div class="col p-4 d-flex flex-colunm positon-static">
@@ -108,7 +117,7 @@
                   <small class="form-text text-muted">Date(s) of Activity: {{ log.date_activity }}</small>
                 </div>
                 <div class="col">
-                  <!--<p class="p-1 text-muted" style="text-align:right;float:right">by {{ log.user }}</p>-->
+                  <p class="p-1 text-muted" style="text-align:right;float:right">by {{ log.user }}</p>
                 </div>
               </div>
               <h5 class="p-1">Agency Name: {{ log.agency_name }}</h5>
@@ -119,7 +128,7 @@
             </div>
           </div>
           </div>
-
+-->
 
 
           <script>
@@ -133,7 +142,7 @@
           </script> -->
 
 
-  {% endfor %}
+  <!--endfor-->
 
 
 </div>
