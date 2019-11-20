@@ -14,18 +14,18 @@
 
 <div style="margin-top:10px">
   <div class="container">
-    <h3>Participation Points: </h3>
-    <br>
     <h3>Profile:</h3>
-    <h4>Username: {{ user }}</h4>
-    <h5>First Name: {{ user.first_name }}</h5>
-    <h5>Last Name: {{ user.last_name }}</h5>
-    <h5>Email: {{ user.email }}</h5>
-    <h5>Your Token: {{ token }}</h5>
+    <ul class="list-group">
+      <li class="list-group-item">Username: {{ user }}</li>
+      <li class="list-group-item">First Name: {{ user.first_name }}</li>
+      <li class="list-group-item">Last Name: {{ user.last_name }}</li>
+      <li class="list-group-item">Email: {{ user.email }}</li>
+      <li class="list-group-item">Your Token: {{ token }}</li>
+    </ul>
     <p>A token is what you give to people so that they can find you
     <br>
     For Example: /accounts/profile/(Your Token Here)
-  </p>
+    </p>
   </div>
 
   <div id="volunteeringLogger" class="container bg-white border rounded shadow-sm flex-md-row mb-4">
@@ -73,7 +73,41 @@
 
 <h3 class="container">Community Service Log:</h3>
 
-  {% for log in logs %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Agency Name</th>
+      <th scope="col">Activity</th>
+      <th scope="col">Hours</th>
+      <th scope="col">Date</th>
+      <th scope="col">Supervisor and Contact</th>
+      <th scope="col">View More (Signature)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for log in logs %}
+    <tr>
+      <td>{{ log.agency_name }}</td>
+      <td>{{ log.activity|linebreaks }}</td>
+      <td>{{ log.hours }}</td>
+      <td>{{ log.date_activity }}</td>
+      <td>{{ log.supervisor_contact }}</td>
+      <td><a class="btn btn-primary" href="/accounts/post/{{ log.pk }}">Click to view</a></td>
+    </tr>
+
+    <script>
+      function IndividualPost(){
+        window.location = "/accounts/profile/" + {{ log.signature }};
+      }
+    </script>
+
+    {% endfor %}
+  </tbody>
+</table>
+
+<!--
+for loop goes here
 
   <div class="container bg-white border rounded-lg shadow-sm flex-md-row mb-4">
           <div class="col p-4 d-flex flex-colunm positon-static">
@@ -83,7 +117,7 @@
                   <small class="form-text text-muted">Date(s) of Activity: {{ log.date_activity }}</small>
                 </div>
                 <div class="col">
-                  <!--<p class="p-1 text-muted" style="text-align:right;float:right">by {{ log.user }}</p>-->
+                  <p class="p-1 text-muted" style="text-align:right;float:right">by {{ log.user }}</p>
                 </div>
               </div>
               <h5 class="p-1">Agency Name: {{ log.agency_name }}</h5>
@@ -94,7 +128,7 @@
             </div>
           </div>
           </div>
-
+-->
 
 
           <script>
@@ -108,7 +142,7 @@
           </script> -->
 
 
-  {% endfor %}
+  <!--endfor-->
 
 
 </div>

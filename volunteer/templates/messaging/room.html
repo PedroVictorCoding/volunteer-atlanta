@@ -9,6 +9,16 @@
 
 <div id='div11' style='overflow:scroll;overflow-x:hidden;height:70vh;'>
    {% for message in messages %}
+<!-- TODO: Consider this layout -->
+<!--   <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+     <div class="toast-header">
+       <strong class="mr-auto">{{ message.author }}</strong>
+       <small class="text-muted">{{ message.timestamp }}</small>
+     </div>
+     <div class="toast-body">
+       {{ message.message|linebreaks }}
+     </div>
+   </div> -->
 
   <div class="container" style="margin-top:20px" id='div12'>
     <small class="form-text text-muted">{{ message.timestamp }}</small>
