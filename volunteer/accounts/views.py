@@ -79,6 +79,14 @@ class Other_LogView(TemplateView):
         args            = {'form': form, 'logs': logs}
         return render(request, self.template_name, args)
 
+def login(request):
+    request = request.POST
+    user = authenticate(request, username=request.cleaned_data['username'], password=request.cleaned_data['password'])
+    if user is not None:
+        login(request, user)
+    else:
+        return render(request, 'accounts/login_error.html')
+    return render(request, 'accounts/login.html')
 
 def signup(request):
     if request.method == 'POST':
