@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Cheer - NAHS Student Lab</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
+</script>
+{% endblock title %}
+
+{% block content %}
+{% if "Cheer" in clubs_in %}
+<!-- TODO: Remove Alert If person is in the club -->
+{% else %}
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Well done!</h4>
+  <p></p>
+  <hr>
+  <form class="" method="post">
+    {% csrf_token %}
+    <a id="joinClub" class="btn btn-light btn-block">Join Cheer</a>
+  </form>
+
+</div>
+{% endif %}
+
+<script>
+
+var club = "Cheer"
+
+  $("#joinClub").click(function(event){
+
+           data = {'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+           'ClubEntered': club};
+           console.log("Data Sent: ", data);
+           $.ajax({
+                   type:'POST',
+                   url:'/clubs/cheerleading/',
+                   datatype: 'JSON',
+                   data: data,
+                   success: function(data) {
+            console.log('Success: ' + data) // check out how data is structured
+          }
+          });
+ });
+
+</script>
+
+{% endblock content %}
