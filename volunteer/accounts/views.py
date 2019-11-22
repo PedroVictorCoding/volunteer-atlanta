@@ -14,6 +14,7 @@ from django.views.generic import TemplateView
 from django.contrib.admin.models import ADDITION, LogEntry
 from home.forms import HomeForm
 from django.contrib.auth import authenticate, login
+from django.core.mail import send_mail
 
 
 @method_decorator(login_required, name='get')
