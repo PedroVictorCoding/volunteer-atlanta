@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete="")
+    clubs = models.CharField(max_length=1000, blank=True)
 
     def __str__(self):
         return self.user.username

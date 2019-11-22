@@ -13,19 +13,28 @@
 {% block content %}
 
 <div style="margin-top:10px">
-  <div class="container">
+  <div class="row">
+
+  <div class="col">
     <h3>Profile:</h3>
-      <h3>Participation Points: </h3>
-      <br>
-      <h3>Profile:</h3>
-      <h4>Username: {{ user }}</h4>
-      <h5>Full Name: {{ user.get_full_name }}</h5>
-      <h5>Your Token: {{ token }}</h5>
-    <p>A token is what you give to people so that they can find you
+    <h4>Username: {{ user }}</h4>
+    <h5>First Name: {{ user.first_name }}</h5>
+    <h5>Last Name: {{ user.last_name }}</h5>
+    <h5>Email: {{ user.email }}</h5>
+    <h5>Full Name: {{ user.get_full_name }}</h5>
+    <h5>Your Token: {{ token }}</h5>
+    <!--<p>A token is what you give to people so that they can find you
     <br>
     For Example: /accounts/profile/(Your Token Here)
-    </p>
+    </p>-->
   </div>
+  <div class="col">
+    <h3>Clubs and Sports:</h3>
+    {% for club in clubs_in %}
+    <h5>{{ club }}</h5>
+    {% endfor %}
+  </div>
+</div>
 
   <div id="volunteeringLogger" class="container bg-white border rounded shadow-sm flex-md-row mb-4">
     <form style="padding:10px" method="post">
