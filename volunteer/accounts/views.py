@@ -14,6 +14,7 @@ from django.views.generic import TemplateView
 from django.contrib.admin.models import ADDITION, LogEntry
 from home.forms import HomeForm
 from django.contrib.auth import authenticate, login
+from accounts.models import UserProfile
 
 
 @method_decorator(login_required, name='get')
@@ -25,9 +26,12 @@ class LogView(TemplateView):
         form            = LogForm()
         logs            = VolunteeringLog.objects.filter(user=request.user.id).order_by('-date_activity')
         user = User.objects.get(id=request.user.id)
+        user_profile = UserProfile.objects.get(user=request.user)
+        user_profile = user_profile.clubs
+        clubs_in = user_profile.split(",")
         token = user.pk
         token = str(token).zfill(6)
-        args            = {'form': form, 'logs': logs, 'token': token}
+        args  = {'form': form, 'logs': logs, 'token': token, 'clubs_in': clubs_in}
         return render(request, self.template_name, args)
 
     @method_decorator(login_required)

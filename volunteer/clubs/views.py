@@ -11,12 +11,15 @@ def home(request):
 
 def robotics(request):
     return render(request, 'clubs/robotics/home.html')
-
+    
 
 def cheer_home(request, *args, **kwargs):
+    user_profile = UserProfile.objects.get(user=request.user)
+    clubs_in = user_profile.clubs
+    args = {'clubs_in': clubs_in}
+
     if request.is_ajax() and request.method == "POST":
       club = request.POST['ClubEntered']
-      user_profile = UserProfile.objects.get(user=request.user)
       if user_profile.clubs == "":
           user_profile.clubs = club
       elif club in user_profile.clubs:
@@ -24,11 +27,10 @@ def cheer_home(request, *args, **kwargs):
       else:
           user_profile.clubs = user_profile.clubs + "," + club
       user_profile.save()
-      return_val = "true"
-      print("Joined club: " + club)
-      return HttpResponse(json.dumps({'return_val': return_val, 'clubs_in': user_profile.clubs}), content_type="application/json")
+      return HttpResponse(json.dumps({'clubs_in': clubs_in}), content_type="application/json")
     else:
-      return render(request, 'clubs/cheer/home.html')
+      return render(request, 'clubs/cheer/home.html', args)
+    return render(request, 'clubs/cheer/home.html', args)
 
 
 class CheerView(TemplateView):

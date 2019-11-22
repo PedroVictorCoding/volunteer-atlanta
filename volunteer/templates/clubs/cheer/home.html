@@ -8,12 +8,14 @@
 </script>
 {% endblock title %}
 
+
 {% block content %}
-{% if "Cheer" in clubs_in %}
-<!-- TODO: Remove Alert If person is in the club -->
-{% else %}
-<div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">Well done!</h4>
+
+
+
+{% if "Cheer" not in clubs_in %}
+<div class="alert alert-dark" role="alert">
+  <h4 class="alert-heading">Are you a member of the cheerleading team?</h4>
   <p></p>
   <hr>
   <form class="" method="post">
@@ -22,6 +24,8 @@
   </form>
 
 </div>
+{% else %}
+
 {% endif %}
 
 <script>
