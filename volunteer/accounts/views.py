@@ -52,16 +52,6 @@ class LogView(TemplateView):
         args = {'form': form}
         return render(request, self.template_name, args)
 
-
-'''
-@login_required
-def profile(request,pk=None):
-    user    = request.user
-    users   = User.objects.exclude(id=request.user.id)
-    args    = {'user': user, 'users': users}
-    return render(request, 'accounts/profile.html', args)
-'''
-
 @login_required
 def other_profile(request, pk=None):
     if pk:
