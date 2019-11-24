@@ -11,7 +11,7 @@ def home(request):
 
 def robotics(request):
     return render(request, 'clubs/robotics/home.html')
-    
+
 
 def cheer_home(request, *args, **kwargs):
     user_profile = UserProfile.objects.get(user=request.user)
@@ -27,7 +27,7 @@ def cheer_home(request, *args, **kwargs):
       else:
           user_profile.clubs = user_profile.clubs + "," + club
       user_profile.save()
-      return HttpResponse(json.dumps({'clubs_in': clubs_in}), content_type="application/json")
+      return HttpResponseRedirect(request, '/clubs/cheerleading/')
     else:
       return render(request, 'clubs/cheer/home.html', args)
     return render(request, 'clubs/cheer/home.html', args)
