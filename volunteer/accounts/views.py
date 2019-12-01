@@ -7,51 +7,25 @@ from django.urls import reverse_lazy
 from accounts.form import SignupForm, EditProfileForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from home.models import Post, Friend
-from accounts.models import VolunteeringLog
-from accounts.form import LogForm
+from home.models import VolunteeringLog
+from home.form import LogForm
 from django.views.generic import TemplateView
 from django.contrib.admin.models import ADDITION, LogEntry
-from home.forms import HomeForm
+from home.form import HomeForm
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from accounts.models import UserProfile
 
 
-@method_decorator(login_required, name='get')
-class LogView(TemplateView):
-    template_name = 'accounts/profile.html'
-
-    @method_decorator(login_required)
-    def get(self, request, pk=None):
-        form            = LogForm()
-        logs            = VolunteeringLog.objects.filter(user=request.user.id).order_by('-date_activity')
-        user = User.objects.get(id=request.user.id)
-        user_profile = UserProfile.objects.get(user=request.user)
-        user_profile = user_profile.clubs
-        clubs_in = user_profile.split(",")
-        token = user.pk
-        token = str(token).zfill(6)
-        args  = {'form': form, 'logs': logs, 'token': token, 'clubs_in': clubs_in}
-        return render(request, self.template_name, args)
-
-    @method_decorator(login_required)
-    def post(self, request):
-        form = LogForm(request.POST)
-        if form.is_valid():
-            log                 = form.save(commit=False)
-            log.user            = request.user
-            log.save()
-            agency_name         = form.cleaned_data['agency_name']
-            activity            = form.cleaned_data['activity']
-            hours               = form.cleaned_data['hours']
-            date_activity       = form.cleaned_data['date_activity']
-            supervisor_contact  = form.cleaned_data['supervisor_contact']
-            signature           = form.cleaned_data['signature']
-            form                = LogForm()
-            return HttpResponseRedirect('/accounts/profile')
-        args = {'form': form}
-        return render(request, self.template_name, args)
+def profile(request):
+    user = User.objects.get(id=request.user.id)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile = user_profile.clubs
+    clubs_in = user_profile.split(",")
+    token = user.pk
+    token = str(token).zfill(6)
+    args  = {'token': token, 'clubs_in': clubs_in}
+    return render(request, 'accounts/profile.html')
 
 @login_required
 def other_profile(request, pk=None):

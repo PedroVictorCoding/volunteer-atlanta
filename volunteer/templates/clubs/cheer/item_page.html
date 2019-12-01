@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Cheer - NAHS Student Lab</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
+{% endblock title %}
+
+
+{% block content %}
+
+<form class="" action="index.html" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+</form>
+
+<h4>Football Varsity Items</h4>
+
+<div class="row">
+  <div class="col">
+    <div class="card" style="width: ">
+      <img src="..." class="card-img-top" alt="item_logo">
+      <div class="card-body">
+        <h5 class="card-title">(Black) Varsity Football Uniform</h5>
+        <p class="card-text" value>Cost - 0</p>
+        <div class="btn-group" role="group" aria-label="First group">
+          <button id="buf_yl" value="addItem" onclick="addItem('buf_yl', 'buf_yl', 0)" type="button" class="btn btn-primary">Youth Large</button>
+          <button id="buf_xs" value="addItem" onclick="addItem('buf_xs', 'buf_xs', 0)" type="button" class="btn btn-primary">Extra Small</button>
+          <button id="buf_s" value="addItem" onclick="addItem('buf_s', 'buf_s', 0)" type="button" class="btn btn-primary">Small</button>
+          <button id="buf_m" value="addItem" onclick="addItem('buf_m', 'buf_m', 0)" type="button" class="btn btn-primary">Medium</button>
+          <button id="buf_l" value="addItem" onclick="addItem('buf_l', 'buf_l', 0)" type="button" class="btn btn-primary">Large</button>
+          <button id="buf_xl" value="addItem" onclick="addItem('buf_xl', 'buf_xl', 0)" type="button" class="btn btn-primary">Extra Large</button>
+          <button id="buf_2xl" value="addItem" onclick="addItem('buf_2xl', 'buf_2xl', 0)" type="button" class="btn btn-primary">Double XL</button>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+<script>
+  items = ""
+  item = ""
+  button_id = ""
+
+  var s = 'buf_yl';
+  s = s.substring(s.indexOf('_'));
+  alert(s);
+
+
+  function addItem(item, button_id, cost){
+    if (document.getElementById(button_id).value === "addItem"){
+      if (items.length > 0) {
+        items = items + ' ' + item
+      } else {
+        items = item
+      }
+
+      document.getElementById(button_id).className = "btn btn-danger"
+      document.getElementById(button_id).value = "removeItem"
+
+    } else if (document.getElementById(button_id).value === "removeItem") {
+      items = items.replace(item, "")
+      document.getElementById(button_id).className = "btn btn-primary"
+      document.getElementById(button_id).value = "addItem"
+    }
+    if (items === "  ") {
+      items = ""
+    }
+      document.getElementById("itemsInput").value = items;
+      console.log(items)
+  }
+
+</script>
+
+{% endblock content %}

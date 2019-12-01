@@ -8,7 +8,11 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView
 from django.contrib.auth.views import PasswordResetDoneView
 from django.contrib.auth.views import PasswordResetConfirmView, PasswordResetCompleteView
 from lobby.views import lobby
+from home.views import about, creators
+
 
 urlpatterns = [
-    path('', lobby, name="lobby")
+    path('', lobby, name="lobby"),
+    path('about/', about, name='about'),
+    path('creators/', creators, name='creators')
 ]

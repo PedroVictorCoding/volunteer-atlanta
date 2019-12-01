@@ -24,85 +24,9 @@
   </form>
 
 </div>
-{% else %}
-
-
-<div class="row">
-  <div class="col">
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="item_logo">
-      <div class="card-body">
-        <h5 class="card-title">Item #1</h5>
-        <p class="card-text"></p>
-        <button id="item1" class="btn btn-primary btn-block" onclick="addItem('item#1', 'item1')" value="addItem">Add</button>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="item_logo">
-      <div class="card-body">
-        <h5 class="card-title">Item #2</h5>
-        <p class="card-text"></p>
-        <button id="item2" class="btn btn-primary btn-block" onclick="addItem('item#2', 'item2')" value="addItem">Add</button>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="item_logo">
-      <div class="card-body">
-        <h5 class="card-title">Item #3</h5>
-        <p class="card-text"></p>
-        <button id="item3" class="btn btn-primary btn-block" onclick="addItem('item#3', 'item3')" value="addItem">Add</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-{% endif %}
-
-<script>
-  items = ""
-  item = ""
-  button_id = ""
-
-
-  function addItem(item, button_id){
-    if (document.getElementById(button_id).value === "addItem"){
-      if (items.length > 0) {
-        items = items + ',' + item
-      } else {
-        items = item
-      }
-      items = items.replace(',,', ',')
-      document.getElementById(button_id).className = "btn btn-danger btn-block"
-      $('#' + button_id).text('Remove');
-      document.getElementById(button_id).value = "removeItem"
-
-    } else if (document.getElementById(button_id).value === "removeItem") {
-      items = items.replace(item, "")
-      if (items.lenght = 1) {
-          items = ""
-      }
-      items = items.replace(',,', ',')
-      document.getElementById(button_id).className = "btn btn-primary btn-block"
-      $('#' + button_id).text('Add');
-      document.getElementById(button_id).value = "addItem"
-    }
-  }
-
-console.log(items)
-
-</script>
-
-
-
 <script name="joinClubs">
-
 var club = "Cheer"
-
-  $("#joinClub").click(function(event){
+$("#joinClub").click(function(event){
 
            data = {'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
            'ClubEntered': club};
@@ -119,5 +43,12 @@ var club = "Cheer"
  });
 
 </script>
+
+{% else %}
+
+<a class="btn btn-dark text-white btn-block btn-lg" href="equipment/">Order your Equipment</a>
+
+{% endif %}
+
 
 {% endblock content %}

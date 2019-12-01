@@ -46,6 +46,16 @@
 </style>
 
 
+<h5 class="card-title">Your Clubs and Sports:</h5>
+<div class="card-group">
+{% for club in clubs_in %}
+  <div class="card" style="background:#{% cycle '4f000b' '720026' 'ce4848' 'ff7f51' 'ff9b54' %}; color:#{% cycle 'fff' 'fff' 'fff' %}">
+    <div class="card-body text-center justify-content-center">
+        <h5>{{ club }}</h5>
+    </div>
+  </div>
+{% endfor %}
+</div>
 
 <div class="card text-white mb-3" style="margin-top:10px; background-color:#f71735">
   <div class="card-body">

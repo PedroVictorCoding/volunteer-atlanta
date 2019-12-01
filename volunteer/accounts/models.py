@@ -14,13 +14,3 @@ def create_profile(sender, **kwargs):
         user_profile = UserProfile.objects.create(user=kwargs['instance'])
 
 post_save.connect(create_profile, sender=User)
-
-
-class VolunteeringLog(models.Model):
-    user                = models.ForeignKey(User, on_delete='')
-    agency_name         = models.CharField(max_length=250)
-    activity            = models.CharField(max_length=1000)
-    hours               = models.CharField(max_length=250)
-    date_activity       = models.CharField(max_length=250)
-    supervisor_contact  = models.CharField(max_length=1000)
-    signature           = models.CharField(max_length=50000)

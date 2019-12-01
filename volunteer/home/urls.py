@@ -6,11 +6,11 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetDoneView
 from django.contrib.auth.views import PasswordResetConfirmView, PasswordResetCompleteView
-from home.views import HomeView, about, change_friend, creators
+from home.views import HomeView, LogView
+from accounts.views import view_post
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
-    path('about/', about, name='about'),
-    path('connect/<operation>/<str:pk>/', change_friend, name='change_friend'),
-    path('creators/', creators, name='creators')
+    path('log', LogView.as_view(), name='log'),
+    path('post/<str:pk>/', view_post, name="view_post"),
 ]

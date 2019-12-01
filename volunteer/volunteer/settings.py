@@ -41,9 +41,6 @@ INSTALLED_APPS = [
     'accounts',
     'messaging',
     'clubs',
-
-
-    # 'channels',
 ]
 
 MIDDLEWARE = [
@@ -123,6 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 
 
 # Internationalization

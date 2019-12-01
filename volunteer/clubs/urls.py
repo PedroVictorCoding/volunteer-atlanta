@@ -6,7 +6,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetDoneView
 from django.contrib.auth.views import PasswordResetConfirmView, PasswordResetCompleteView
-from .views import home, robotics, cheer_home
+from .views import home, robotics, cheer_home, CheerItemsView, CheerCoachView
 
 urlpatterns = [
     path('', home, name='clubs_homepage'),
@@ -16,5 +16,6 @@ urlpatterns = [
 
     # Cheer Pages
     path('cheerleading/', cheer_home, name='cheer'),
-    #path('cheerleading/equipment/', , name='cheer_equipment')
+    path('cheerleading/equipment/', CheerItemsView.as_view(), name='cheer_equipment'),
+    path('cheerleading/coach/', CheerCoachView.as_view(), name="cheer_coach"),
 ]

@@ -1,7 +1,8 @@
 from django.contrib import admin
 from accounts.models import UserProfile
 from home.models import Post
-from accounts.models import VolunteeringLog
+from home.models import VolunteeringLog, VolunteeringQuestions
+from clubs.models import CheerItems
 
 class UserProfileAdmin(admin.ModelAdmin):
 
@@ -14,3 +15,6 @@ class UserProfileAdmin(admin.ModelAdmin):
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Post)
 admin.site.register(VolunteeringLog)
+admin.site.register(VolunteeringQuestions)
+
+admin.site.register(CheerItems)
