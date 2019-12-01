@@ -8,6 +8,45 @@
 
 {% block content %}
 
+{% if "Robotics" not in clubs_in %}
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">Are you a member of the cheerleading team?</h4>
+  <p></p>
+  <hr>
+  <form class="" method="post">
+    {% csrf_token %}
+    <a id="joinClub" class="btn btn-light btn-block">Join Robotics</a>
+  </form>
+
+</div>
+
+
+<script name="joinClubs">
+
+var club = "Robotics"
+
+  $("#joinClub").click(function(event){
+
+           data = {'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+           'ClubEntered': club};
+           console.log("Data Sent: ", data);
+           $.ajax({
+                   type:'POST',
+                   url:'/clubs/robotics/',
+                   datatype: 'JSON',
+                   data: data,
+                   success: function(data) {
+            console.log('Success: ' + data) // check out how data is structured
+          }
+          });
+ });
+
+</script>
+
+
+{% else %}
+{% endif %}
+
   <div class="alert alert-danger" role="alert">
     <h4 class="alert-heading">Remember</h4>
     <p>Robotics holds meetings every Tuesdays and Thursdays after school in the first floor</p>

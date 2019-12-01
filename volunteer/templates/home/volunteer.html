@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>{{ user }}'s Log - NAHS Volunteer Hub</title>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js" charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+{% endblock title %}
+
+{% block content %}
+
+
+
+
+  <div id="volunteeringLogger" style="margin-top:10px" class="container bg-white border rounded shadow-sm flex-md-row mb-4">
+    <form style="padding:10px" method="post">
+      <h4>Log Your Activities:</h4>
+    <div id="formDiv" class="form-group">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div id="signatureBox"></div>
+      <br><small>This action is not reversable</small>
+      <button type="submit" id="submitting" data class="btn btn-primary btn-lg btn-block">Submit</button>
+      </div>
+    </form>
+
+  </div>
+
+  <script>
+
+    var wind = document.getElementById('formDiv').offsetWidth;
+
+    function setup(){
+      var cnv = createCanvas(wind, 150);
+      background(51);
+      cnv.parent('signatureBox');
+    }
+
+    var array_save = [];
+    var signatureCoordinates = "";
+
+    function draw() {
+      stroke(255);
+      if (mouseIsPressed === true) {
+        strokeWeight(2);
+        line(mouseX, mouseY, pmouseX, pmouseY);
+        append(array_save, mouseX + "," + mouseY + "," + pmouseX + "," + pmouseY);
+        document.getElementById("signatureArray").value = array_save;
+        signatureCoordinates = document.getElementById('signatureArray').value;
+      }
+    }
+
+  </script>
+
+
+  <div style="margin-top:10px" class="container bg-white border rounded shadow-sm flex-md-row mb-4">
+    <form style="padding:10px" method="post">
+      <h4>Answer Your Questions:</h4>
+    <div id="formDiv" class="form-group">
+      {% csrf_token %}
+      {{ questions.as_p }}
+      <button type="submit" id="submitting" data class="btn btn-primary btn-lg btn-block">Update</button>
+
+      </div>
+    </form>
+
+  </div>
+
+  {% for question in question_val %}
+  <script>
+    $('#q1').val('{{ question.question1 }}');
+    $('#q2').val('{{ question.question2 }}');
+    $('#q3').val('{{ question.question3 }}');
+    $('#q4').val('{{ question.question4 }}');
+  </script>
+  {% endfor %}
+
+<br>
+
+<h3 class="container">Community Service Log:</h3>
+
+<div class="table-responsive">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Agency Name</th>
+      <th scope="col">Activity</th>
+      <th scope="col">Hours</th>
+      <th scope="col">Date</th>
+      <th scope="col">Supervisor and Contact</th>
+      <th scope="col">View More (Signature)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for log in logs %}
+    <tr>
+      <td>{{ log.agency_name }}</td>
+      <td>{{ log.activity|linebreaks }}</td>
+      <td>{{ log.hours }}</td>
+      <td>{{ log.date_activity }}</td>
+      <td>{{ log.supervisor_contact }}</td>
+      <td><a class="btn btn-primary" href="/volunteer/post/{{ log.pk }}">Click to view</a></td>
+    </tr>
+
+
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% endblock content %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>

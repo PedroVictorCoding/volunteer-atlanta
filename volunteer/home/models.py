@@ -10,20 +10,18 @@ class Post(models.Model):
     date        = models.DateTimeField(auto_now_add=True)
     post_id     = models.AutoField(primary_key=True)
 
-class Friend(models.Model):
-    users           = models.ManyToManyField(User)
-    current_user    = models.ForeignKey(User, related_name='owner', on_delete='', null=True)
+class VolunteeringLog(models.Model):
+    user                = models.ForeignKey(User, on_delete='')
+    agency_name         = models.CharField(max_length=250)
+    activity            = models.CharField(max_length=1000)
+    hours               = models.CharField(max_length=250)
+    date_activity       = models.CharField(max_length=250)
+    supervisor_contact  = models.CharField(max_length=1000)
+    signature           = models.CharField(max_length=50000)
 
-    @classmethod
-    def make_friend(cls, current_user, new_friend):
-        friend, created = cls.objects.get_or_create(
-            current_user=current_user
-        )
-        friend.users.add(new_friend)
-
-    @classmethod
-    def remove_friend(cls, current_user, new_friend):
-        friend, created = cls.objects.get_or_create(
-            current_user=current_user
-        )
-        friend.users.remove(new_friend)
+class VolunteeringQuestions(models.Model):
+    user = models.ForeignKey(User, on_delete='')
+    question1 = models.CharField(max_length=1000)
+    question2 = models.CharField(max_length=1000)
+    question3 = models.CharField(max_length=1000)
+    question4 = models.CharField(max_length=1000)

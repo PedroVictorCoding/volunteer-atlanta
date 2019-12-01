@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title%}
+<title>Cheer Coach</title>
+{% endblock title%}
+
+
+{% block content %}
+<h2>Hello {{ user }}</h2>
+
+
+<div class="table-responsive">
+
+<table class="table">
+  <h5>All Orders</h5>
+  <thead>
+    <tr>
+      <th scope="col">User</th>
+      <th scope="col">Items</th>
+      <th scope="col">Note</th>
+      <th scope="col">Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in all_orders %}
+    <tr>
+      <td>{{ order.user }}</td>
+      <td id="all_items">{{ order.items }}</td>
+      <td>{{ order.notes|linebreaks }}</td>
+      {% for cost in final_cost %}
+      <td id="individual_cost">{{ cost }}</td>
+      {% endfor %}
+    </tr>
+
+    <script>
+      var items = $('#all_items').html();
+      var individual_items = items.split(',')
+      var cost = 0
+      if ($.inArray('item#1', individual_items) > -1) {
+        cost = cost + 40
+      }
+      if ($.inArray('item#2', individual_items) > -1) {
+        cost = cost + 10
+      }
+      if ($.inArray('item#3', individual_items) > -1) {
+        cost = cost + 20
+      }
+      document.getElementById('individual_cost').innerHTML = "$" + cost
+      console.log(cost)
+      console.log(individual_items)
+    </script>
+
+    {% endfor %}
+
+
+{% endblock content %}

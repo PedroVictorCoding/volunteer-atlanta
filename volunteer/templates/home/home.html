@@ -130,22 +130,23 @@
 <div style="margin-top:-20px" class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
   <div class="row">
     <div class="col px-0">
-      <h1 class="display-4 font-italic">NAHS Volunteer</h1>
+      <h1 class="display-4 font-italic">Volunteer</h1>
       <p class="lead my-3">Get involved and help the community, with thousands of opportunities</p>
     </div>
-    <div class="col">
-      {% if user.is_authenticated %}
-      <h1 style="text-align:right"><span id="changinghello"></span> {{ request.user }}</h1>
-      {% else %}
-      {% endif %}
-    </div>
+
       </div>
 </div>
 
+<div class="row" >
 
-<div style="margin-bottom:-10px" class="jumbotron p-md-3 shadow-sm border text-white rounded bg-white">
+<div style="margin-bottom:-10px, diplay:flex" class="jumbotron p-md-3 col shadow-sm border text-white rounded bg-white">
   <input class="form-control" id="findtoken" placeholder="Find Users (Use Token)">
   <button type="submit" onclick="find()" style="margin-top:15px" class="btn btn-primary btn-block">Search</button>
+</div>
+
+<div style="display:flex" class="jumbotron p-md-3 col shadow-sm border text-white rounded bg-white">
+  <a class="btn btn-success btn-block btn-lg m-4" href="/volunteer/log">Log your hours</a>
+</div>
 </div>
 
 <script>

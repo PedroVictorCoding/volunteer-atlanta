@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Login - NAHS Volunteer Hub</title>
+{% endblock title %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block content %}
+<div class="card text-black mb-3" style="margin-top:50px;margin-bottom:50%;margin-left:auto;margin-right:auto">
+      <div class="card-header">Login</div>
+        <div class="card-body">
+          <form class="form" method="post">
+              {% csrf_token %}
+              {% if next %}
+                  <input type="hidden" name="next" value="{{ next }}" />
+              {% endif %}
+              <div class="control-group">
+                  <div class="controls">
+                      <input type="text" id="username" class="form-control" name="username"  placeholder="Username">
+                  </div>
+              </div>
+              <br>
+              <div class="control-group">
+                  <div class="controls">
+                      <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                  </div>
+              </div>
+              <br>
+              <p color=red>Incorrect Username/Password, if you are not able to login contact a supervisor</p>
+              <button style="width:100%" class="btn btn-primary" type="submit">Login</button>
+          </form>
+          <br>
+          <p style="text-align:center">or</p>
+          <a style="width:100%" class="btn btn-dark" href="/accounts/signup">Signup</a>
+        </div>
+      </div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="{% static 'js/bootstrap.bundle.min.js' %}" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+
+{% endblock content %}

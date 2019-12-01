@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>{{ user }}'s Profile - NAHS Volunteer Hub</title>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js" charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+{% endblock title %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block content %}
+<style media="screen">
+  @media screen and (min-width: 900px) {
+    #mobile{display:none;}
+    #computer{display:block;}
+}
+  @media screen and (max-width: 901px) {
+    #mobile{display:block;}
+    #computer{display:none;}
+}
+.split {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+}
+.left {
+  left: 0;
+  width: 25%;
+  text-align:center;
+  background-color:#212121;
+}
+.right {
+  right: 0;
+  width: 75%;
+  padding-left:20px;
+  padding-right:20px;
+  background-color:#f2f2f2;
+}
+
+.left_header_gradient{
+  width:100%;
+}
+
+.moving_gradient{
+
+}
+
+</style>
+
+
+<div id="computer" >
+
+<div class="split left shadow-lg">
+  <div style="padding-top:30px" class="container-fluid">
+    <a href="/" style="color:#fff;text-decoration:none"><h2><b>Student <span class="text-success">Lab</span></b></h2></a>
+    <h4 style="color:#fff"><span id="day_night_text"></span>{{ user.first_name }}!</h4>
+  </div>
+
+  <script>
+    var hours = new Date().getHours()
+    if (hours >= 6 && hours <= 11) {
+      $("#day_night_text").text("Good Morning, ");
+    } else if (hours >= 12 && hours <= 18) {
+      $("#day_night_text").text("Good Afternoon, ");
+    } else {
+      $("#day_night_text").text("Good Night, ");
+    }
+  </script>
+
+<div class="container-fluid">
+
+
+  <div style="margin-top:30px;margin-bottom:20px" class="dropdown-divider"></div>
+
+  <button type="button" class="btn btn-secondary btn-lg btn-block shadow" onclick="showSection('profile_section')" name="button">Profile</button>
+  <button type="button" class="btn btn-primary btn-lg btn-block shadow" onclick="showSection('clubs_section')" name="button">Clubs</button>
+  <button type="button" class="btn btn-danger btn-lg btn-block shadow" onclick="showSection('volunteer_section')" name="button">Volunteer</button>
+  <button type="button" class="btn btn-success btn-lg btn-block shadow" onclick="showSection('rooms_section')" name="button">My Rooms</button>
+</div>
+</div>
+
+<div class="split right">
+
+  <nav class="navbar navbar-light">
+    <a class="navbar-brand" href="{% url 'lobby' %}">NAHS Student Lab</a>
+    {% if user.is_authenticated %}
+    <div class="dropdown">
+  <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    More
+  </button>
+  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" style="color:#000" href="{% url 'lobby' %}">Home</a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Volunteer <span class="badge badge-secondary">New</span></a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms <span class="badge badge-secondary">New</span></a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'clubs_homepage' %}">Clubs <span class="badge badge-secondary">New</span></a>
+    <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ request.user }}</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
+
+  </div>
+  </div>
+    {% else %}
+    <div class="form-inline" style="">
+      <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
+      <a class="btn btn-outline-dark" style="margin-left:10px" href="{% url 'signup' %}">Signup</a>
+    </div>
+    {% endif %}
+  </nav>
+
+  <div id="profile_section" style="visibility:block">
+
+
+        <script>
+
+
+           var wind = document.getElementById('formDiv').offsetWidth;
+
+            function setup(){
+              var cnv = createCanvas(wind, 150);
+              background(51);
+              cnv.parent('signatureBox');
+            }
+
+            var array_save = [];
+            var signatureCoordinates = '';
+
+            function draw() {
+              stroke(255);
+              if (mouseIsPressed === true) {
+                strokeWeight(2);
+                line(mouseX, mouseY, pmouseX, pmouseY);
+                append(array_save, mouseX + ',' + mouseY + ',' + pmouseX + ',' + pmouseY);
+                document.getElementById('signatureArray').value = array_save;
+                signatureCoordinates = document.getElementById('signatureArray').value;
+              }
+            }
+
+          </script>
+
+
+<h1 style="text-align:center;margin-bottom:43px">PROFILE</h1>
+
+    <div class="row" style="margin-top:0px">
+      <div class="col-xl-8 col-md-6">
+        <div class="card rounded-lg ">
+          <div class="card-body d-flex flex-column" color="#fff">
+
+                <h3>Profile:</h3>
+                <h4>Username: {{ user }}</h4>
+                <h5>First Name: {{ user.first_name }}</h5>
+                <h5>Last Name: {{ user.last_name }}</h5>
+                <h5>Email: {{ user.email }}</h5>
+                <h5>Your Token: {{ token }}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col" style="display:flex">
+        <div class="card bg-primary text-white text-center p-3">
+          <div class="card-body rounded-lg text-center d-flex flex-column justify-content-center" color="#fff">
+            Last Time Active
+            <br>
+            {{ user.last_login }}
+          </div>
+        </div>
+        </div>
+        <div class="col" style="display:flex">
+        <div class="card bg-warning text-black text-center p-3">
+          <div class="card-body text-center d-flex flex-column justify-content-center" color="#fff">
+            Date joined
+            <br>
+            {{ user.date_joined }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:20px">
+      <div class="col">
+        <div class="card bg-dark text-white">
+          <div class="card-body rounded-lg text-center d-flex flex-column justify-content-center" color="#fff">
+            Calendar
+            <br>
+            <script>
+              var hours = new Date().getHours()
+              var day = new Date().getDay()
+              var month = new Date().getMonth()
+              console.log(hours + ", " + month)
+            </script>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+  <div id="clubs_section" style="display:none">
+    <h1 style="text-align:center;margin-bottom:43px">CLUBS AND SPORTS:</h1>
+    {% for club in clubs_in %}
+    <div class="card text-white bg-primary mb-3" style="text-align:center" style="max-width: 18rem;">
+    <h2>{{ club }}</h2>
+    <!-- IDEA: GET CLUB orders and stuff -->
+    {% endfor %}
+  </div>
+  </div>
+
+  <div id="volunteer_section" style="display:none">
+
+    <h3 style="text-align:center">Community Service Log</h3>
+
+    <div id="volunteeringLogger" class="container bg-white border rounded shadow-sm flex-md-row mb-4">
+      <form style="padding:10px" method="post">
+        <h4>Log Your Activities:</h4>
+      <div id="formDiv" class="form-group">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div id="signatureBox"></div>
+        <br><small>This action is not reversable</small>
+        <button type="submit" id="submitting" data class="btn btn-primary btn-lg btn-block">Submit</button>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="table-responsive">
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Agency Name</th>
+          <th scope="col">Activity</th>
+          <th scope="col">Hours</th>
+          <th scope="col">Date</th>
+          <th scope="col">Supervisor and Contact</th>
+          <th scope="col">View More (Signature)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for log in logs %}
+        <tr>
+          <td>{{ log.agency_name }}</td>
+          <td>{{ log.activity|linebreaks }}</td>
+          <td>{{ log.hours }}</td>
+          <td>{{ log.date_activity }}</td>
+          <td>{{ log.supervisor_contact }}</td>
+          <td><a class="btn btn-primary" href="/accounts/post/{{ log.pk }}">Click to view</a></td>
+        </tr>
+
+        <script>
+          function IndividualPost(){
+            window.location = "/accounts/profile/" + {{ log.signature }};
+          }
+        </script>
+
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+
+  <script>
+    function showSection(section){
+      $('#profile_section').hide();
+      $('#clubs_section').hide();
+      $('#volunteer_section').hide();
+      $('#' + section).show();
+
+
+      // IDEA: Change Button Color
+    }
+  </script>
+
+
+</div>
+
+<div id="mobile" class="margin-top:10px">
+mobile
+</div>
+
+{% endblock content %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
