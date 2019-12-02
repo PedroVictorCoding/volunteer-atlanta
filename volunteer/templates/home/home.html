@@ -6,41 +6,11 @@
 {% endblock title %}
 
 
-{% block navbar %}
-<nav class="navbar navbar-light">
-  <a class="navbar-brand" href="{% url 'lobby' %}">NAHS Student Lab</a>
-  {% if user.is_authenticated %}
-  <div class="dropdown">
-  <a class="btn text-white btn-primary" onclick="createPublication()">Create a Post</a>
-<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  More
-</button>
-<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
-  <a class="dropdown-item" style="color:#000" href="{% url 'lobby' %}">Home</a>
-  <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Volunteer <span class="badge badge-secondary">New</span></a>
-  <a class="dropdown-item" style="color:#000" href="{% url 'messaging_room' %}">Rooms <span class="badge badge-secondary">New</span></a>
-  <a class="dropdown-item" style="color:#000" href="{% url 'clubs_homepage' %}">Clubs <span class="badge badge-secondary">New</span></a>
-  <a class="dropdown-item" style="color:#000" href="{% url 'profile' %}">Profile - {{ user }}</a>
-  <div class="dropdown-divider"></div>
-  <a class="dropdown-item" style="color:#000" href="{% url 'about' %}">About</a>
-  <div class="dropdown-divider"></div>
-  <a class="dropdown-item" style="color:#000" href="{% url 'logout' %}">Logout</a>
 
-</div>
-</div>
-  {% else %}
-  <div class="form-inline" style="">
-    <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
-    <a class="btn btn-outline-dark" style="margin-left:10px" href="{% url 'signup' %}">Signup</a>
-  </div>
-  {% endif %}
-</nav>
-{% endblock %}
 
 {% block content %}
 
 
-<br>
 
 <style>
   div.fixeds {
@@ -139,13 +109,21 @@
 
 <div class="row" >
 
-<div style="margin-bottom:-10px, diplay:flex" class="jumbotron p-md-3 col shadow-sm border text-white rounded bg-white">
-  <input class="form-control" id="findtoken" placeholder="Find Users (Use Token)">
-  <button type="submit" onclick="find()" style="margin-top:15px" class="btn btn-primary btn-block">Search</button>
+<div style="margin-bottom:-10px, diplay:flex" class="jumbotron p-md-3 col-sm shadow-sm border rounded bg-white">
+
+    <h5 class="text-center">Search for users</h5>
+  <div class="input-group">
+    <input id="findtoken" type="text" class="form-control" placeholder="Find Users (Use Token)" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <span class="input-group-text" id="basic-addon2" onclick="find()">Search</span>
+    </div>
+  </div>
 </div>
 
-<div style="display:flex" class="jumbotron p-md-3 col shadow-sm border text-white rounded bg-white">
-  <a class="btn btn-success btn-block btn-lg m-4" href="/volunteer/log">Log your hours</a>
+
+<div class="jumbotron p-md-3 col-sm shadow-sm border text-white rounded bg-white">
+  <a id="createPostButton" class="btn btn-primary btn-block" onclick="createPublication()">Create a Post</a>
+  <a class="btn btn-success btn-block" href="/volunteer/log">Log your hours</a>
 </div>
 </div>
 
@@ -170,16 +148,22 @@
 <script>
   function createPublication(){
       document.getElementById('publicationForm').style.display = "block";
+      $("#createPostButton").attr("class", "btn btn-danger btn-block");
+      $("#createPostButton").text("Hide Post");
+      $("#createPostButton").attr("onclick", "hidePublication()");
   }
   function hidePublication(){
       document.getElementById('publicationForm').style.display = "none";
+      $("#createPostButton").attr("class", "btn btn-primary btn-block");
+      $("#createPostButton").text("Create a Post");
+      $("#createPostButton").attr("onclick", "createPublication()");
   }
 </script>
 
 <div id="publicationForm" style="display:none;" class="container-fluid rounded border shadow-lg">
 
 <form style="padding:10px" method="post">
-  <h4>Publication</h4><button class="btn btn-light" onclick="hidePublication()" style="float:right;margin-bottom:10px;margin-top:-10px">&times;</button>
+  <h4>Publication</h4>
 <div class="form-group">
   {% csrf_token %}
   {{ form.as_p }}
