@@ -140,13 +140,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/volunteer-atlanta/volunteer/static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_DIRS = (
-    '/home/volunteer-atlanta/volunteer/static/'
-)
 
 DATE_INPUT_FORMATS = ('%Y%m%d')
 
