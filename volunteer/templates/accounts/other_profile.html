@@ -41,14 +41,9 @@
       <td>{{ log.hours }}</td>
       <td>{{ log.date_activity }}</td>
       <td>{{ log.supervisor_contact }}</td>
-      <td><a class="btn btn-primary" href="/accounts/post/{{ log.pk }}">Click to view</a></td>
+      <td><a class="btn btn-primary" href="/volunteer/post/{{ log.pk }}">Click to view</a></td>
     </tr>
 
-    <script>
-      function IndividualPost(){
-        window.location = "/accounts/profile/" + {{ log.signature }};
-      }
-    </script>
 
     {% endfor %}
   </tbody>
