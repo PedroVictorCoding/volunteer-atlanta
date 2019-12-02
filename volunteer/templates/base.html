@@ -54,12 +54,9 @@
     <a class="navbar-brand" href="{% url 'lobby' %}"><img src="{% static 'logo/logo1x.png' %}" style="width:75px; height:75px" alt=""></a>
     {% if user.is_authenticated %}
     <div class="dropdown">
-      <div id="extraButton">
-        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          More
-        </button>
-      </div>
-
+  <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    More
+  </button>
   <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" style="color:#000" href="{% url 'lobby' %}">Home</a>
     <a class="dropdown-item" style="color:#000" href="{% url 'home' %}">Volunteer <span class="badge badge-secondary">New</span></a>

@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'i2%mtpno@*wfqef)u1+-b^iyz4*dg*+x@ey44nqfa3d1j*g#n%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['www.atlantavolunteer.pythonanywhere.com', 'http://atlantavolunteer.pythonanywhere.com', 'atlantavolunteer.pythonanywhere.com']
+ALLOWED_HOSTS = ['atlantavolunteer.pythonanywhere.com', 'localhost']
 
 
 # Application definition
@@ -56,7 +56,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'volunteer.urls'
 
 
-TEMPLATE_PATH = '/home/atlantavolunteer/volunteer-atlanta/volunteer/templates'
+TEMPLATE_PATH = BASE_DIR + '/templates'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -142,10 +142,10 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/atlantavolunteer/volunteer-atlanta/volunteer/'
+STATIC_ROOT = BASE_DIR
 
 STATICFILES_DIRS = (
-    '/home/atlantavolunteer/volunteer-atlanta/volunteer/static/',
+    BASE_DIR + '/static/',
 )
 
 DATE_INPUT_FORMATS = ('%Y%m%d')
