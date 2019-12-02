@@ -142,10 +142,10 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR
+STATIC_ROOT = '/home/volunteer-atlanta/volunteer/static'
 
 STATICFILES_DIRS = (
-    BASE_DIR + '/static/',
+    '/home/volunteer-atlanta/volunteer/static/'
 )
 
 DATE_INPUT_FORMATS = ('%Y%m%d')
