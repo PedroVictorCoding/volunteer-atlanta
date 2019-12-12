@@ -148,6 +148,10 @@ STATICFILES_DIRS = (
     BASE_DIR + '/static/',
 )
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR + 'media'
+
+
 DATE_INPUT_FORMATS = ('%Y%m%d')
 
 LOGIN_REDIRECT_URL = "/"
