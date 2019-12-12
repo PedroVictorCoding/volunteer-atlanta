@@ -15,6 +15,7 @@ from home.form import HomeForm
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from accounts.models import UserProfile
+from home.models import VolunteeringQuestions
 
 
 def profile(request):
@@ -37,7 +38,8 @@ def other_profile(request, pk=None):
     token = user.pk
     token = str(token).zfill(6)
     logs            = VolunteeringLog.objects.filter(user=user)
-    args            = {'form': form, 'logs': logs, 'user': user, 'token': token}
+    volunteer_questions = VolunteeringQuestions.objects.filter(user=user)
+    args            = {'form': form, 'logs': logs, 'user': user, 'token': token, 'questions': volunteer_questions}
     return render(request, 'accounts/other_profile.html', args)
 
 class Other_LogView(TemplateView):

@@ -8,7 +8,6 @@
 {% block content %}
 
 <div style="margin-top:10px">
-  <div class="container">
     <h3>Participation Points: </h3>
     <br>
     <h3>Profile:</h3>
@@ -20,8 +19,22 @@
 
 <br>
 
-<h3 class="container">Community Service Log:</h3>
-<div class="table-responsive">
+
+<h3>Community Service Log:</h3>
+
+{% for question in questions %}
+  <h5 style="margin-left:10px">Question 1:</h5>
+  <h6 style="margin-left:20px">{{ question.question1|linebreaks }}</h6>
+  <h5 style="margin-left:10px">Question 2:</h5>
+  <h6 style="margin-left:20px">{{ question.question2|linebreaks }}</h6>
+  <h5 style="margin-left:10px">Question 3:</h5>
+  <h6 style="margin-left:20px">{{ question.question3|linebreaks }}</h6>
+  <h5 style="margin-left:10px">Question 4:</h5>
+  <h6 style="margin-left:20px">{{ question.question4|linebreaks }}</h6>
+{% endfor %}
+
+
+<div class="table-responsive" style="margin-top:10px">
 <table class="table">
   <thead>
     <tr>

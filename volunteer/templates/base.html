@@ -50,8 +50,8 @@
 <body class="container">
 
   {% block navbar %}
-  <nav class="navbar navbar-light" style="margin-bottom:-25px;margin-top:-20px">
-    <a class="navbar-brand" href="{% url 'lobby' %}"><img src="{% static 'logo/logo1x.png' %}" style="width:75px; height:75px" alt=""></a>
+  <nav class="navbar navbar-light" >
+    <a class="navbar-brand" href="{% url 'lobby' %}">NAHS Student LAB</a>
     {% if user.is_authenticated %}
     <div class="dropdown">
   <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
