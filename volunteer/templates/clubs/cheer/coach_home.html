@@ -15,7 +15,8 @@
   <h5>All Orders</h5>
   <thead>
     <tr>
-      <th scope="col">User</th>
+      <th scope="col">User (Full name)</th>
+      <th scope="col">Date</th>
       <th scope="col">Items</th>
       <th scope="col">Note</th>
       <th scope="col">Cost</th>
@@ -24,7 +25,8 @@
   <tbody>
     {% for order in all_orders %}
     <tr>
-      <td>{{ order.user }}</td>
+      <td>{{ order.user }} ({{ order.user.get_full_name }})</td>
+      <td>{{ order.date_purchased }}</td>
       <td id="all_items">{{ order.items }}</td>
       <td>{{ order.notes|linebreaks }}</td>
       {% for cost in final_cost %}
