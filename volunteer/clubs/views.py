@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 import json
@@ -8,6 +9,7 @@ from accounts.models import UserProfile
 from clubs.models import CheerItems
 from clubs.form import CheerItemsForm
 
+@login_required
 def home(request):
     user_profile = UserProfile.objects.get(user=request.user)
     clubs_in = user_profile.clubs
@@ -60,11 +62,13 @@ def cheer_home(request, *args, **kwargs):
 class CheerItemsView(TemplateView):
     template_name = 'clubs/cheer/item_page.html'
 
+    @method_decorator(login_required)
     def get(self, request):
         form = CheerItemsForm()
         args = {'form': form}
         return render(request, self.template_name, args)
 
+    @method_decorator(login_required)
     def post(self, request):
         form = CheerItemsForm(request.POST)
         if form.is_valid():
@@ -82,6 +86,7 @@ class CheerItemsView(TemplateView):
 class CheerView(TemplateView):
     template_name = 'clubs/cheer/.html'
 
+    @method_decorator(login_required)
     def get(self, request):
         if (request.GET.get('joinClub')):
             print("Joined Club")
@@ -93,6 +98,7 @@ class CheerView(TemplateView):
 class CheerCoachView(TemplateView):
     template_name = "clubs/cheer/coach_home.html"
     args = {}
+    @method_decorator(login_required)
     def get(self, request):
         all_orders = CheerItems.objects.all()
         args = {'all_orders': all_orders}
