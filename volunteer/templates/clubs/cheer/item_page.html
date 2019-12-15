@@ -10,37 +10,141 @@
 
 {% block content %}
 
-<form class="" action="index.html" method="post">
+<form class="" action="" method="post">
   {% csrf_token %}
   {{ form.as_p }}
-</form>
 
 <h4>Football Varsity Items</h4>
 
 <div class="row">
-  <div class="col">
-    <div class="card" style="width: ">
-      <img src="..." class="card-img-top" alt="item_logo">
+  <div class="col-md-4">
+    <div class="card mb-4 shadow-sm">
+      <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: (Varsity Football) Black Uniform Top"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="30%" y="50%" fill="#eceeef" dy=".3em">(Varsity Football) Black Uniform Top</text></svg>
       <div class="card-body">
-        <h5 class="card-title">(Black) Varsity Football Uniform</h5>
-        <p class="card-text" value>Cost - 0</p>
-        <div class="btn-group" role="group" aria-label="First group">
-          <button id="buf_yl" value="addItem" onclick="addItem('buf_yl', 'buf_yl', 0)" type="button" class="btn btn-primary">Youth Large</button>
-          <button id="buf_xs" value="addItem" onclick="addItem('buf_xs', 'buf_xs', 0)" type="button" class="btn btn-primary">Extra Small</button>
-          <button id="buf_s" value="addItem" onclick="addItem('buf_s', 'buf_s', 0)" type="button" class="btn btn-primary">Small</button>
-          <button id="buf_m" value="addItem" onclick="addItem('buf_m', 'buf_m', 0)" type="button" class="btn btn-primary">Medium</button>
-          <button id="buf_l" value="addItem" onclick="addItem('buf_l', 'buf_l', 0)" type="button" class="btn btn-primary">Large</button>
-          <button id="buf_xl" value="addItem" onclick="addItem('buf_xl', 'buf_xl', 0)" type="button" class="btn btn-primary">Extra Large</button>
-          <button id="buf_2xl" value="addItem" onclick="addItem('buf_2xl', 'buf_2xl', 0)" type="button" class="btn btn-primary">Double XL</button>
-<!-- IDEA: Use django jinger cycle -->
-
+        <p class="card-text">(Varsity Football) Black Uniform Top</p>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button id="utf_yl" value="addItem" onclick="addItem('utf_yl', 'utf_yl', 0)" type="button" class="btn btn-primary">Youth Large</button>
+            <button id="utf_xs" value="addItem" onclick="addItem('utf_xs', 'utf_xs', 0)" type="button" class="btn btn-primary">Extra Small</button>
+            <button id="utf_s" value="addItem" onclick="addItem('utf_s', 'utf_s', 0)" type="button" class="btn btn-primary">Small</button>
+            <button id="utf_m" value="addItem" onclick="addItem('utf_m', 'utf_m', 0)" type="button" class="btn btn-primary">Medium</button>
+            <button id="utf_l" value="addItem" onclick="addItem('utf_l', 'utf_l', 0)" type="button" class="btn btn-primary">Large</button>
+            <button id="utf_xl" value="addItem" onclick="addItem('utf_xl', 'utf_xl', 0)" type="button" class="btn btn-primary">Extra Large</button>
+            <button id="utf_2xl" value="addItem" onclick="addItem('utf_2xl', 'utf_2xl', 0)" type="button" class="btn btn-primary">Double XL</button>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
 
+
+  <div class="col-md-4">
+    <div class="card mb-4 shadow-sm">
+      <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: (Varsity Football) Black Uniform Bottom"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="30%" y="50%" fill="#eceeef" dy=".3em">(Varsity Football) Black Uniform Bottom</text></svg>
+      <div class="card-body">
+        <p class="card-text">(Varsity Football) Black Uniform Bottom</p>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button id="ubf_yl" value="addItem" onclick="addItem('ubf_yl', 'ubf_yl', 0)" type="button" class="btn btn-primary">Youth Large</button>
+            <button id="ubf_xs" value="addItem" onclick="addItem('ubf_xs', 'ubf_xs', 0)" type="button" class="btn btn-primary">Extra Small</button>
+            <button id="ubf_s" value="addItem" onclick="addItem('ubf_s', 'ubf_s', 0)" type="button" class="btn btn-primary">Small</button>
+            <button id="ubf_m" value="addItem" onclick="addItem('ubf_m', 'ubf_m', 0)" type="button" class="btn btn-primary">Medium</button>
+            <button id="ubf_l" value="addItem" onclick="addItem('ubf_l', 'ubf_l', 0)" type="button" class="btn btn-primary">Large</button>
+            <button id="ubf_xl" value="addItem" onclick="addItem('ubf_xl', 'ubf_xl', 0)" type="button" class="btn btn-primary">Extra Large</button>
+            <button id="ubf_2xl" value="addItem" onclick="addItem('ubf_2xl', 'ubf_2xl', 0)" type="button" class="btn btn-primary">Double XL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card mb-4 shadow-sm">
+      <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: (Varsity Football) Warm Top"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="30%" y="50%" fill="#eceeef" dy=".3em">(Varsity Football) Warm Top</text></svg>
+      <div class="card-body">
+        <p class="card-text">(Varsity Football) Warm Top</p>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button id="wtf_yl" value="addItem" onclick="addItem('wtf_yl', 'wtf_yl', 0)" type="button" class="btn btn-primary">Youth Large</button>
+            <button id="wtf_xs" value="addItem" onclick="addItem('wtf_xs', 'wtf_xs', 0)" type="button" class="btn btn-primary">Extra Small</button>
+            <button id="wtf_s" value="addItem" onclick="addItem('wtf_s', 'wtf_s', 0)" type="button" class="btn btn-primary">Small</button>
+            <button id="wtf_m" value="addItem" onclick="addItem('wtf_m', 'wtf_m', 0)" type="button" class="btn btn-primary">Medium</button>
+            <button id="wtf_l" value="addItem" onclick="addItem('wtf_l', 'wtf_l', 0)" type="button" class="btn btn-primary">Large</button>
+            <button id="wtf_xl" value="addItem" onclick="addItem('wtf_xl', 'wtf_xl', 0)" type="button" class="btn btn-primary">Extra Large</button>
+            <button id="wtf_2xl" value="addItem" onclick="addItem('wtf_2xl', 'wtf_2xl', 0)" type="button" class="btn btn-primary">Double XL</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   </div>
 
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: (Varsity Football) Warm Bottom"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="30%" y="50%" fill="#eceeef" dy=".3em">(Varsity Football) Warm Bottom</text></svg>
+        <div class="card-body">
+          <p class="card-text">(Varsity Football) Warm Bottom</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button id="wbf_yl" value="addItem" onclick="addItem('wbf_yl', 'wbf_yl', 0)" type="button" class="btn btn-primary">Youth Large</button>
+              <button id="wbf_xs" value="addItem" onclick="addItem('wbf_xs', 'wbf_xs', 0)" type="button" class="btn btn-primary">Extra Small</button>
+              <button id="wbf_s" value="addItem" onclick="addItem('wbf_s', 'wbf_s', 0)" type="button" class="btn btn-primary">Small</button>
+              <button id="wbf_m" value="addItem" onclick="addItem('wbf_m', 'wbf_m', 0)" type="button" class="btn btn-primary">Medium</button>
+              <button id="wbf_l" value="addItem" onclick="addItem('wbf_l', 'wbf_l', 0)" type="button" class="btn btn-primary">Large</button>
+              <button id="wbf_xl" value="addItem" onclick="addItem('wbf_xl', 'wbf_xl', 0)" type="button" class="btn btn-primary">Extra Large</button>
+              <button id="wbf_2xl" value="addItem" onclick="addItem('wbf_2xl', 'wbf_2xl', 0)" type="button" class="btn btn-primary">Double XL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="30%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        <div class="card-body">
+          <p class="card-text">(Varsity Football) Black Uniform Bottom</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button id="ubf_yl" value="addItem" onclick="addItem('ubf_yl', 'ubf_yl', 0)" type="button" class="btn btn-primary">Youth Large</button>
+              <button id="ubf_xs" value="addItem" onclick="addItem('ubf_xs', 'ubf_xs', 0)" type="button" class="btn btn-primary">Extra Small</button>
+              <button id="ubf_s" value="addItem" onclick="addItem('ubf_s', 'ubf_s', 0)" type="button" class="btn btn-primary">Small</button>
+              <button id="ubf_m" value="addItem" onclick="addItem('ubf_m', 'ubf_m', 0)" type="button" class="btn btn-primary">Medium</button>
+              <button id="ubf_l" value="addItem" onclick="addItem('ubf_l', 'ubf_l', 0)" type="button" class="btn btn-primary">Large</button>
+              <button id="ubf_xl" value="addItem" onclick="addItem('ubf_xl', 'ubf_xl', 0)" type="button" class="btn btn-primary">Extra Large</button>
+              <button id="ubf_2xl" value="addItem" onclick="addItem('ubf_2xl', 'ubf_2xl', 0)" type="button" class="btn btn-primary">Double XL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="30%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        <div class="card-body">
+          <p class="card-text">(Varsity Football) Warm Top</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button id="wtf_yl" value="addItem" onclick="addItem('wtf_yl', 'wtf_yl', 0)" type="button" class="btn btn-primary">Youth Large</button>
+              <button id="wtf_xs" value="addItem" onclick="addItem('wtf_xs', 'wtf_xs', 0)" type="button" class="btn btn-primary">Extra Small</button>
+              <button id="wtf_s" value="addItem" onclick="addItem('wtf_s', 'wtf_s', 0)" type="button" class="btn btn-primary">Small</button>
+              <button id="wtf_m" value="addItem" onclick="addItem('wtf_m', 'wtf_m', 0)" type="button" class="btn btn-primary">Medium</button>
+              <button id="wtf_l" value="addItem" onclick="addItem('wtf_l', 'wtf_l', 0)" type="button" class="btn btn-primary">Large</button>
+              <button id="wtf_xl" value="addItem" onclick="addItem('wtf_xl', 'wtf_xl', 0)" type="button" class="btn btn-primary">Extra Large</button>
+              <button id="wtf_2xl" value="addItem" onclick="addItem('wtf_2xl', 'wtf_2xl', 0)" type="button" class="btn btn-primary">Double XL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+
+<button type="submit" id="confirmItems" class="btn btn-success mb-3 mt-3 btn-lg btn-block" name="button">Confirm Order</button>
+</form>
 
 
 <script>
@@ -50,8 +154,6 @@
 
   var s = 'buf_yl';
   s = s.substring(s.indexOf('_'));
-  alert(s);
-
 
   function addItem(item, button_id, cost){
     if (document.getElementById(button_id).value === "addItem"){
@@ -65,6 +167,7 @@
       document.getElementById(button_id).value = "removeItem"
 
     } else if (document.getElementById(button_id).value === "removeItem") {
+      items = items.replace(item + " ", "")
       items = items.replace(item, "")
       document.getElementById(button_id).className = "btn btn-primary"
       document.getElementById(button_id).value = "addItem"
@@ -75,6 +178,8 @@
       document.getElementById("itemsInput").value = items;
       console.log(items)
   }
+
+
 
 </script>
 

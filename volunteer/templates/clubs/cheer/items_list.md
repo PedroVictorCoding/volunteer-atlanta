@@ -21,19 +21,19 @@ Bloomers Football                   - ID: bf_
 
 Bloomers Basketball                 - ID: bb_
 
-Uniform Top Football                - ID: utf_
+Uniform Top Football                - ID: utf_    |x|
 
-Uniform Top Basketball              - ID: utb_
+Uniform Top Basketball              - ID: utb_    | |
 
-Uniform Bottom Football             - ID: ubf_
+Uniform Bottom Football             - ID: ubf_    |x|
 
 Uniform Bottom Basketball           - ID: ubb_
 
-Warm Top Football                   - ID: wtf_
+Warm Top Football                   - ID: wtf_    |x|
 
 Warm Top Basketball                 - ID: wtb_
 
-Warm Bottom Football                - ID: wbf_
+Warm Bottom Football                - ID: wbf_    |x|
 
 Warm Bottom Basketball              - ID: wbb_
 
