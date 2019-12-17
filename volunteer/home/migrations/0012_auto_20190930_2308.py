@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='friend',
             name='current_user',
-            field=models.ForeignKey(default=0, on_delete='', related_name='owner', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(default=0, on_delete=models.CASCADE, related_name='owner', to=settings.AUTH_USER_MODEL),
             preserve_default=False,
         ),
     ]

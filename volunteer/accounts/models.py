@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete="")
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     clubs = models.CharField(max_length=1000, blank=True)
 
     def __str__(self):

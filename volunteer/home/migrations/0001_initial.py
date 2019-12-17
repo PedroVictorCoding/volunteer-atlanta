@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=250)),
                 ('description', models.CharField(max_length=2000)),
                 ('website', models.URLField()),
-                ('user', models.ForeignKey(on_delete='', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(on_delete=models.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

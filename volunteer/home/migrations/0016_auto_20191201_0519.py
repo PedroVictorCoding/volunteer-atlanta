@@ -22,14 +22,14 @@ class Migration(migrations.Migration):
                 ('date_activity', models.CharField(max_length=250)),
                 ('supervisor_contact', models.CharField(max_length=1000)),
                 ('signature', models.CharField(max_length=50000)),
-                ('user', models.ForeignKey(on_delete='', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(on_delete=models.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
             name='VolunteeringQuestions',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user', models.ForeignKey(on_delete='', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(on_delete=models.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.DeleteModel(

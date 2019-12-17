@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('hours', models.CharField(max_length=250)),
                 ('date_activity', models.CharField(max_length=250)),
                 ('supervisor_contact', models.CharField(max_length=1000)),
-                ('user', models.ForeignKey(on_delete='', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(on_delete=models.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

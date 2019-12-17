@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='friend',
             name='current_user',
-            field=models.ForeignKey(null=True, on_delete='', related_name='owner', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(null=True, on_delete=models.CASCADE, related_name='owner', to=settings.AUTH_USER_MODEL),
         ),
     ]

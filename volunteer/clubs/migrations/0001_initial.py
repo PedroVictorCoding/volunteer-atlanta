@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('items', models.CharField(max_length=10000)),
                 ('notes', models.CharField(blank=True, max_length=500)),
                 ('date_purchased', models.DateTimeField(auto_now=True)),
-                ('user', models.ForeignKey(on_delete='', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(on_delete=models.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]
