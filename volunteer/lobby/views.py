@@ -11,4 +11,4 @@ def lobby(request):
         form = SignupForm()
 
     args = {'form': form}
-    return render(request, 'lobby/home.html', args)
+    return render(request, 'lobby/home2.html', args)
