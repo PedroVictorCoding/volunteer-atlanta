@@ -26,7 +26,7 @@ def profile(request):
     token = user.pk
     token = str(token).zfill(6)
     args  = {'token': token, 'clubs_in': clubs_in}
-    return render(request, 'accounts/profile.html')
+    return render(request, 'accounts/profile.html', args)
 
 @login_required
 def other_profile(request, pk=None):
